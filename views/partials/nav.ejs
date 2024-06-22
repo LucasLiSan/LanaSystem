@@ -1,4 +1,5 @@
-<nav>
+<nav id="navResponsive" class="topNavMenu">
+    <a class="icon" onclick="openMenu()"><i class="fa fa-bars"></i></a>
     <ul>
         <a href="/almoxarifado"><li>ALMOXARIFADO</li></a>
         <a href="/patrimonio"><li>PATRIMÔNIO</li></a>
@@ -6,3 +7,18 @@
         <a href="/eLimpeza"><li>ESTOQUE DA LIMPEZA</li></a>
     </ul>
 </nav>
+
+<script>
+    function openMenu() {
+        const ul = document.querySelector('.topNavMenu ul');
+        ul.style.display = ul.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    document.addEventListener('click', function(event) {
+        const menu = document.querySelector('.topNavMenu');
+        const ul = document.querySelector('.topNavMenu ul');
+        const icon = document.querySelector('.icon');
+        const iconDisplay = window.getComputedStyle(icon).display;
+        if (iconDisplay !== 'none' && !menu.contains(event.target)) { ul.style.display = 'none'; }
+    });
+</script>
