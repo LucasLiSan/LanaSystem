@@ -1,4 +1,4 @@
-/* ---------- CONTROLLER DE MANUTENÇÃO DA HOME (INDEX.EJS) ---------- */
+/* ---------- CONTROLLER DE MANUTENÇÃO DA VIEW PATRIMONIO ---------- */
 
 /* ----------\/ IMPORTAÇÃO DE MÓDULOS \/---------- */
 import express from "express";
@@ -10,8 +10,8 @@ import path from "path";
 /* ----------/\ IMPORTAÇÃO DE MÓDULOS /\---------- */
 const router = express.Router();
 
-/* ----------\/ ROTA PRINCIPAL \/---------- */
-router.get('/home', function(req, res) { res.render("index"); });
-/* ----------/\ ROTA PRINCIPAL /\---------- */
+/* ----------\/ ROTA PRINCIPAL VIEW PATRIMONIO \/---------- */
+router.get('/patrimonio', function(req, res) { res.render("patrimonio"); });
+/* ----------/\ ROTA PRINCIPAL VIEW PATRIMONIO /\---------- */
 
 export default router;

@@ -1,4 +1,4 @@
-/* ---------- CONTROLLER DE MANUTENÇÃO DA HOME (INDEX.EJS) ---------- */
+/* ---------- CONTROLLER DE MANUTENÇÃO DA VIEW ESTOQUE DA LIMPEZA ---------- */
 
 /* ----------\/ IMPORTAÇÃO DE MÓDULOS \/---------- */
 import express from "express";
@@ -10,8 +10,8 @@ import path from "path";
 /* ----------/\ IMPORTAÇÃO DE MÓDULOS /\---------- */
 const router = express.Router();
 
-/* ----------\/ ROTA PRINCIPAL \/---------- */
-router.get('/home', function(req, res) { res.render("index"); });
-/* ----------/\ ROTA PRINCIPAL /\---------- */
+/* ----------\/ ROTA PRINCIPAL VIEW ESTOQUE DA LIMPEZA \/---------- */
+router.get('/eLimpeza', function(req, res) { res.render("eLimpeza"); });
+/* ----------/\ ROTA PRINCIPAL VIEW ESTOQUE DA LIMPEZA /\---------- */
 
 export default router;
