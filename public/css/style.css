@@ -14,6 +14,9 @@ nav a:active, footer a:active,
 
 .almoxarifadoInfos:focus, .eCozinhaInfos:focus,
 .eLimpezaInfos:focus, .patrimonioInfos:focus { box-shadow: 0px 0px 20px 5px var(--colorOne); }
+
+.almoxarifadoInfos:focus > .title, .eCozinhaInfos:focus > .title,
+.eLimpezaInfos:focus > .title, .patrimonioInfos:focus > .title { border-left: 3px solid var(--colorOne); }
 /* ----------/\ HOVER-ACTIVE-FOCUS EFFECTS /\---------- */
 
 /* ----------\/ SCROLLBAR CUSTOMIZATION \/---------- */
@@ -128,10 +131,12 @@ main {
     text-transform: uppercase;
     text-shadow: 3px 1px 5px black;
     border-left: 3px solid #000000;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
 
 .title h2 {
-    width: 35%;
+    width: 50%;
     height: 100%;
     margin-left: 0.3rem;
     text-align: left;
@@ -150,17 +155,62 @@ main {
     width: 50%;
     height: 90%;
     margin: 0 0 0 1rem;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
     border-radius: 1rem;
     box-shadow: 0px 0px 15px 3px var(--colorFour);
 }
 
-.eCozinhaInfos, .eLimpezaInfos,
+.eCozinhaInfos {
+    width: 50%;
+    height: 90%;
+    margin: 0 0 0 3rem;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 15px 3px var(--colorFour);
+}
+
+.eLimpezaInfos {
+    width: 50%;
+    height: 90%;
+    margin: 0 0 0 3rem;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 15px 3px var(--colorFour);
+}
+
 .patrimonioInfos {
     width: 50%;
     height: 90%;
     margin: 0 0 0 3rem;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
     border-radius: 1rem;
     box-shadow: 0px 0px 15px 3px var(--colorFour);
+}
+
+.infos {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.colInfosIndex {
+    width: 50%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.colInfosIndex h3 {
+    width: 100%;
+    height: 2rem;
+    font-size: 1.2rem;
+    text-align: center;
+    align-content: center;
 }
 
 .stats {
@@ -214,6 +264,9 @@ footer span {
 /* ----------\/ RESPONSIVIDADE \/---------- */
 
 @media (width < 955px) {
+    .almoxarifadoInfos, .eCozinhaInfos,
+    .eLimpezaInfos, .patrimonioInfos { width: 45rem;}
+
     footer ul { display: none; }
     footer span { width: 100%; }
 }
@@ -224,6 +277,7 @@ footer span {
         right: 18rem;
     }
 
+    /*Menu responsividade*/
     .icon {
         width: 100%;
         height: 100%;

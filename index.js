@@ -12,6 +12,7 @@ import eCozinhaController from "./controllers/eCozinhaController.js"
 import eLimpezaController from "./controllers/eLimpezaController.js"
 import homeController from "./controllers/homeController.js"
 import patrimonioController from "./controllers/patrimonioController.js"
+import multer from "multer";
 
 app.use("/", almoxarifadoController);
 app.use("/", eCozinhaController);
@@ -38,9 +39,10 @@ app.use(session({
 const port = 8080;
 //const server = '192.168.9.74';
 const myServer = ip.address();
+console.log(myServer);
 
 app.listen(port, myServer, function(erro){
     if(erro){ console.log("Ocorreu um erro!"); }
-    else { console.log("Servidor iniciado com sucesso!"); }
+    else { console.log(`Servidor iniciado com sucesso!`); }
 });
 /* ----------/\ INICIANDO SERVIDOR /\---------- */
