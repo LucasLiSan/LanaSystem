@@ -1,10 +1,21 @@
 /* ----------\/ IMPORTAÇÃO DE MÓDULOS \/---------- */
 import express from "express";
 import session from "express-session";
+import connection from "./configuration/sequelizeConfig.js";
 import flash from "express-flash";
 import ip from "ip";
 /* ----------/\ IMPORTAÇÃO DE MÓDULOS /\---------- */
 const app = express();
+
+/* ----------\/ CRIAÇÃO DO BANCO DE DADOS \/---------- */
+connection.authenticate().then(() => { 
+    console.log("Conexão com o banco realizada com sucesso!")
+}).catch((error) => { console.log(error) });
+
+connection.query(`CREATE DATABASE IF NOT EXISTS lanaSystemDB;`).then(() => {
+    console.log("Banco de dados criado!")
+}).catch((error) => { console.log(error) });
+/* ----------/\ CRIAÇÃO DO BANCO DE DADOS /\---------- */
 
 /* ----------\/ IMPORTANDO E INICIANDO OS CONTROLLERS \/---------- */
 import almoxarifadoController from "./controllers/almoxarifadoController.js"

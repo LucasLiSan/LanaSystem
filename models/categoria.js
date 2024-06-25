@@ -1,0 +1,1 @@
+/* ---------- MODEL DAS CATEGORIAS DOS PRODUTOS ---------- */

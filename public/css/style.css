@@ -8,9 +8,11 @@
 
 /* ----------\/ HOVER-ACTIVE-FOCUS EFFECTS \/---------- */
 nav a:hover, footer a:hover,
-.title:hover { background: var(--colorTwo); }
+.title:hover, .btnAtender input:hover,
+.colInfosIndex > .verMais:hover { background: var(--colorTwo); }
 nav a:active, footer a:active,
-.title:active { background: var(--colorThree); }
+.title:active, .btnAtender input:active,
+.colInfosIndex > .verMais:active { background: var(--colorThree); }
 
 .almoxarifadoInfos:focus, .eCozinhaInfos:focus,
 .eLimpezaInfos:focus, .patrimonioInfos:focus { box-shadow: 0px 0px 20px 5px var(--colorOne); }
@@ -112,6 +114,7 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 .lastUpdates a { text-decoration: none; }
@@ -201,7 +204,12 @@ main {
 
 .colInfosIndex {
     width: 50%;
-    height: 100%;
+    height: 65%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
     overflow-y: scroll;
 }
 
@@ -211,6 +219,100 @@ main {
     font-size: 1.2rem;
     text-align: center;
     align-content: center;
+}
+
+.colInfosIndex form {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+.colInfosIndex > .verMais {
+    width: 50%;
+    height: 8%;
+    font-size: 1.3rem;
+    text-align: center;
+    align-content: center;
+    border-radius: 1rem;
+    border: 2px solid #000000;
+    color: #000000;
+    background: var(--colorOne);
+}
+
+.cardPedidos, .cardEstoqueLast {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-radius: 1rem;
+    background: var(--colorOne);
+}
+
+.cardPedidos input, .cardEstoqueLast input {
+    background: none;
+    border: none;
+}
+
+.numPedido, .numItem {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.numPedido span, .numItem span {
+    height: 100%;
+    width: 10%;
+    font-size: 2rem;
+    text-align: end;
+    align-content: center;
+}
+
+.numPedido input, .numItem input {
+    width: 37%;
+    height: 100%;
+    font-size: 1.3rem;
+    text-align: left;
+    color: #ff0000;
+}
+
+.btnAtender {
+    width: 30%;
+    height: 10rem;
+    display: flex;
+}
+
+.btnAtender input {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    align-content: center;
+    font-size: 1.5rem;
+    font-family: "Staatliches", sans-serif;
+    font-weight: bold;
+    color: #000000;
+    text-shadow: 3px 1px 4px var(--background);
+    border-bottom-left-radius: 1rem;
+}
+
+.pedido, .itemEstoque {
+    width: 70%;
+    height: 10rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.pedido label, .pedido input,
+.itemEstoque label, .itemEstoque input {
+    width: 100%;
+    align-content: center;
+    color: #000000;
 }
 
 .stats {
