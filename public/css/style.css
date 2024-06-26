@@ -10,15 +10,24 @@
 nav a:hover, footer a:hover,
 .title:hover, .btnAtender input:hover,
 .colInfosIndex > .verMais:hover { background: var(--colorTwo); }
+
 nav a:active, footer a:active,
 .title:active, .btnAtender input:active,
 .colInfosIndex > .verMais:active { background: var(--colorThree); }
 
 .almoxarifadoInfos:focus, .eCozinhaInfos:focus,
-.eLimpezaInfos:focus, .patrimonioInfos:focus { box-shadow: 0px 0px 20px 5px var(--colorOne); }
+.eLimpezaInfos:focus, .patrimonioInfos:focus,
+.armarios:focus { box-shadow: 0px 0px 20px 5px var(--colorOne); }
 
 .almoxarifadoInfos:focus > .title, .eCozinhaInfos:focus > .title,
-.eLimpezaInfos:focus > .title, .patrimonioInfos:focus > .title { border-left: 3px solid var(--colorOne); }
+.eLimpezaInfos:focus > .title, .patrimonioInfos:focus > .title,
+.armarios:focus > h3 { border-left: 3px solid var(--colorOne); }
+
+.armarios.focused { box-shadow: 0px 0px 20px 5px var(--colorOne); }
+
+.armarios.focused > h3 { border-left: 3px solid var(--colorOne); }
+
+.prateleiras.focused { box-shadow: 0px 0px 20px 5px var(--colorTwo); }
 /* ----------/\ HOVER-ACTIVE-FOCUS EFFECTS /\---------- */
 
 /* ----------\/ SCROLLBAR CUSTOMIZATION \/---------- */
@@ -157,7 +166,7 @@ main {
 
 .almoxarifadoInfos {
     width: 50%;
-    height: 90%;
+    height: 95%;
     margin: 0 0 0 1rem;
     display: grid;
     grid-template-rows: 1fr 4fr;
@@ -167,7 +176,7 @@ main {
 
 .eCozinhaInfos {
     width: 50%;
-    height: 90%;
+    height: 95%;
     margin: 0 0 0 3rem;
     display: grid;
     grid-template-rows: 1fr 4fr;
@@ -177,7 +186,7 @@ main {
 
 .eLimpezaInfos {
     width: 50%;
-    height: 90%;
+    height: 95%;
     margin: 0 0 0 3rem;
     display: grid;
     grid-template-rows: 1fr 4fr;
@@ -187,7 +196,7 @@ main {
 
 .patrimonioInfos {
     width: 50%;
-    height: 90%;
+    height: 95%;
     margin: 0 0 0 3rem;
     display: grid;
     grid-template-rows: 1fr 4fr;
@@ -205,7 +214,7 @@ main {
 
 .colInfosIndex {
     width: 50%;
-    height: 65%;
+    height: 70%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -252,7 +261,8 @@ main {
     background: var(--colorOne);
 }
 
-.cardPedidos input, .cardEstoqueLast input {
+.cardPedidos input, .cardEstoqueLast input,
+.row input {
     background: none;
     border: none;
 }
@@ -310,7 +320,8 @@ main {
 }
 
 .pedido label, .pedido input,
-.itemEstoque label, .itemEstoque input {
+.itemEstoque label, .itemEstoque input,
+.row label {
     width: 100%;
     align-content: center;
     color: #000000;
@@ -328,14 +339,18 @@ main {
     width: 100%;
     height: 100%;
     padding: 1rem 1.5rem 1rem 1rem;
-    display: grid;
-    grid-template-rows: 2fr 1fr;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
     z-index: 8;
 }
 
 .mainAlmoxarifado h1 {
     width: 100%;
-    height: 10rem;
+    height: 5rem;
+    margin-left: 1rem;
+    align-content: center;
     font-size: 3.5rem;
     font-weight: bold;
     font-family: "Bebas Neue", sans-serif;
@@ -343,8 +358,139 @@ main {
     text-shadow: 3px 1px 5px black;
 }
 
+.mainAlmoxarifado h1 > i {
+    height: 60%;
+    font-size: 2.7rem;
+    margin-left: 1rem;
+}
 
-/* ----------/\ ALMOXARIFADO.JS /\---------- */
+.containerAlmoxarifado {
+    width: 100%;
+    height: 90%;
+    padding: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+.armarios {
+    width: 40%;
+    height: 100%;
+    margin: 0.3rem 1rem 0.3rem 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 15px 3px var(--colorFour);
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.armarios > h3 {
+    width: 100%;
+    height: 4rem;
+    margin: 0.3rem 0 0 1rem;
+    padding: 0 0 0 0.4rem;
+    text-align: left;
+    align-content: center;
+    font-size: 2.5rem;
+    border-left: 3px solid #000000;
+    color: var(--colorOne);
+    text-shadow: 3px 1px 5px black;
+}
+
+.prateleiras {
+    width: 100%;
+    margin: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 1rem;
+}
+
+.prateleiras > h3 {
+    padding: 0.3rem 0 0 1rem;
+    color: #ffffff;
+    font-size: 1.5rem;
+    text-shadow: 3px 1px 5px black;
+}
+
+.cardItemAlmoxarifado {
+    width: 100%;
+    height: 12rem;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 30% 2fr;
+    border-radius: 1rem;
+}
+
+.imgItem {
+    width: 100%;
+    height: 100%;
+    align-content: center;
+    text-align: center;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    background: var(--colorOne);
+}
+
+.imgItem img {
+    width: 95%;
+    border-radius: 1rem;
+}
+
+.infosItem {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background: var(--colorOne);
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.row label { 
+    height: 1.5rem;
+    text-align: center;
+}
+
+.row input {
+    width: 100%;
+    height: 1.4rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bolder;
+    color: #000000;
+    text-transform: uppercase;
+    background: var(--colorTwo);
+}
+
+.rowAlt {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.col {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* ----------/\ ALMOXARIFADO.EJS /\---------- */
 
 footer {
     position: relative;
@@ -389,19 +535,39 @@ footer span {
 }
 
 /* ----------\/ RESPONSIVIDADE \/---------- */
+@media (width < 1441px) {
+    .lastUpdates { padding: 2rem 1rem 2rem 0.3rem; }
 
-@media (width < 955px) {
     .almoxarifadoInfos, .eCozinhaInfos,
-    .eLimpezaInfos, .patrimonioInfos { width: 45rem;}
+    .eLimpezaInfos, .patrimonioInfos { 
+        width: 55rem;
+        height: 100%;
+        padding-bottom: 1rem;
+    }
+
+    .armarios { width: 45rem;}
+}
+
+@media (width < 1025px) {
+    .lastUpdates { padding: 2rem 1rem 2rem 0.3rem; }
+
+    .almoxarifadoInfos, .eCozinhaInfos,
+    .eLimpezaInfos, .patrimonioInfos { 
+        width: 55rem;
+        height: 100%;
+        padding-bottom: 1rem;
+    }
+
+    .armarios { width: 45rem;}
 
     footer ul { display: none; }
     footer span { width: 100%; }
 }
 
-@media (width < 700px) { 
+@media (width < 769px) { 
     nav {
-        width: 12%;
-        right: 18rem;
+        width: 11%;
+        right: 20rem;
     }
 
     /*Menu responsividade*/
@@ -433,13 +599,6 @@ footer span {
     nav li { padding-left: 0.5rem; }
 }
 
-@media (width < 500px) { 
-    nav {
-        width: 15%;
-        right: 13rem;
-    }
-}
-
 @media (width < 426px) { 
     nav {
         width: 20%;
@@ -451,6 +610,13 @@ footer span {
     nav {
         width: 20%;
         right: 8rem;
+    }
+}
+
+@media (width < 321px) {
+    nav {
+        width: 23%;
+        right: 7rem;
     }
 }
 
