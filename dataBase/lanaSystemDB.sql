@@ -1,0 +1,115 @@
+CREATE DATABASE  IF NOT EXISTS `lanasystemdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `lanasystemdb`;
+-- MariaDB dump 10.19  Distrib 10.4.27-MariaDB, for Win64 (AMD64)
+--
+-- Host: 127.0.0.1    Database: lanasystemdb
+-- ------------------------------------------------------
+-- Server version	10.4.27-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `almoxarifados`
+--
+
+DROP TABLE IF EXISTS `almoxarifados`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `almoxarifados` (
+  `idProduto` int(11) NOT NULL AUTO_INCREMENT,
+  `nomeProduto` varchar(255) NOT NULL,
+  `descricaoProduto` varchar(255) NOT NULL,
+  `qtdEstoque` int(11) NOT NULL,
+  `categoriaProd` int(11) NOT NULL,
+  `codBarraProd` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`idProduto`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `almoxarifados`
+--
+
+LOCK TABLES `almoxarifados` WRITE;
+/*!40000 ALTER TABLE `almoxarifados` DISABLE KEYS */;
+INSERT INTO `almoxarifados` VALUES (1,'Caneta Azul','Caneta esferográfica azul',500,1,'7891234567890','0000-00-00 00:00:00','0000-00-00 00:00:00'),(2,'Lápis HB','Lápis de grafite HB',1000,1,'7891234567891','0000-00-00 00:00:00','0000-00-00 00:00:00'),(3,'Borracha','Borracha branca',300,1,'7891234567892','0000-00-00 00:00:00','0000-00-00 00:00:00'),(4,'Caderno 10 Matérias','Caderno espiral 10 matérias',200,2,'7891234567893','0000-00-00 00:00:00','0000-00-00 00:00:00'),(5,'Agenda 2024','Agenda anual 2024',150,2,'7891234567894','0000-00-00 00:00:00','0000-00-00 00:00:00'),(6,'Livro de Matemática','Livro didático de matemática',100,3,'7891234567895','0000-00-00 00:00:00','0000-00-00 00:00:00'),(7,'Giz de Cera','Caixa com 12 cores',400,4,'7891234567896','0000-00-00 00:00:00','0000-00-00 00:00:00'),(8,'Tinta Guache','Tinta guache 250ml',300,4,'7891234567897','0000-00-00 00:00:00','0000-00-00 00:00:00'),(9,'Laptop','Laptop para uso escolar',50,5,'7891234567898','0000-00-00 00:00:00','0000-00-00 00:00:00'),(10,'Projetor','Projetor multimídia',20,5,'7891234567899','0000-00-00 00:00:00','0000-00-00 00:00:00'),(11,'Detergente','Detergente líquido 1L',100,6,'7891234567800','0000-00-00 00:00:00','0000-00-00 00:00:00'),(12,'Vassoura','Vassoura de piaçava',50,6,'7891234567801','0000-00-00 00:00:00','0000-00-00 00:00:00'),(13,'Extintor de Incêndio','Extintor de incêndio ABC 4kg',10,7,'7891234567802','0000-00-00 00:00:00','0000-00-00 00:00:00'),(14,'Kit de Primeiros Socorros','Kit básico de primeiros socorros',20,7,'7891234567803','0000-00-00 00:00:00','0000-00-00 00:00:00'),(15,'Mesa Escolar','Mesa escolar individual',100,8,'7891234567804','0000-00-00 00:00:00','0000-00-00 00:00:00'),(16,'Cadeira Escolar','Cadeira escolar com braço',200,8,'7891234567805','0000-00-00 00:00:00','0000-00-00 00:00:00'),(17,'Bola de Futebol','Bola de futebol tamanho 5',60,9,'7891234567806','0000-00-00 00:00:00','0000-00-00 00:00:00'),(18,'Rede de Vôlei','Rede de vôlei oficial',30,9,'7891234567807','0000-00-00 00:00:00','0000-00-00 00:00:00'),(19,'Violão','Violão acústico',25,10,'7891234567808','0000-00-00 00:00:00','0000-00-00 00:00:00'),(20,'Flauta Doce','Flauta doce de plástico',50,10,'7891234567809','0000-00-00 00:00:00','0000-00-00 00:00:00'),(21,'Microscópio','Microscópio biológico',15,11,'7891234567810','0000-00-00 00:00:00','0000-00-00 00:00:00'),(22,'Lâminas para Microscópio','Caixa com 50 lâminas',100,11,'7891234567811','0000-00-00 00:00:00','0000-00-00 00:00:00'),(23,'Copos Descartáveis','Copos descartáveis 200ml (pacote c/ 100)',200,12,'7891234567812','0000-00-00 00:00:00','0000-00-00 00:00:00'),(24,'Pratos Descartáveis','Pratos descartáveis (pacote c/ 50)',150,12,'7891234567813','0000-00-00 00:00:00','0000-00-00 00:00:00'),(25,'Pá de Jardim','Pá de jardinagem pequena',75,13,'7891234567814','0000-00-00 00:00:00','0000-00-00 00:00:00'),(26,'Adubo Orgânico','Saco de adubo orgânico 5kg',50,13,'7891234567815','0000-00-00 00:00:00','0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `almoxarifados` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `categorias`
+--
+
+DROP TABLE IF EXISTS `categorias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `categorias` (
+  `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`idCategoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categorias`
+--
+
+LOCK TABLES `categorias` WRITE;
+/*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
+INSERT INTO `categorias` VALUES (1,'Material de Escritório','0000-00-00 00:00:00','0000-00-00 00:00:00'),(2,'Material Escolar','0000-00-00 00:00:00','0000-00-00 00:00:00'),(3,'Material Didático','0000-00-00 00:00:00','0000-00-00 00:00:00'),(4,'Material de Arte','0000-00-00 00:00:00','0000-00-00 00:00:00'),(5,'Equipamentos de Tecnologia','0000-00-00 00:00:00','0000-00-00 00:00:00'),(6,'Material de Limpeza','0000-00-00 00:00:00','0000-00-00 00:00:00'),(7,'Equipamentos de Segurança','0000-00-00 00:00:00','0000-00-00 00:00:00'),(8,'Móveis e Equipamentos','0000-00-00 00:00:00','0000-00-00 00:00:00'),(9,'Material de Educação Física','0000-00-00 00:00:00','0000-00-00 00:00:00'),(10,'Material de Música','0000-00-00 00:00:00','0000-00-00 00:00:00'),(11,'Material de Ciências','0000-00-00 00:00:00','0000-00-00 00:00:00'),(12,'Suprimentos de Refeição','0000-00-00 00:00:00','0000-00-00 00:00:00'),(13,'Material de Jardinagem','0000-00-00 00:00:00','0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `localizacaos`
+--
+
+DROP TABLE IF EXISTS `localizacaos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `localizacaos` (
+  `idLocal` int(11) NOT NULL AUTO_INCREMENT,
+  `armario` int(11) NOT NULL,
+  `prateleira` int(11) NOT NULL,
+  `idProdutoGuardado` int(11) NOT NULL,
+  `qtdPrdoGuardado` int(11) NOT NULL,
+  `localArmario` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`idLocal`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `localizacaos`
+--
+
+LOCK TABLES `localizacaos` WRITE;
+/*!40000 ALTER TABLE `localizacaos` DISABLE KEYS */;
+INSERT INTO `localizacaos` VALUES (1,1,1,1,100,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(2,1,2,2,200,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(3,2,1,3,50,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(4,2,1,4,75,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(5,3,1,5,30,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(6,3,2,6,60,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(7,4,1,7,40,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(8,4,1,8,50,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(9,5,1,9,20,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(10,5,3,10,10,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(11,6,1,11,30,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(12,6,2,12,20,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(13,7,1,13,5,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(14,7,2,14,8,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(15,1,3,15,25,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(16,1,2,16,50,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(17,2,1,17,10,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(18,2,2,18,15,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(19,3,3,19,8,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(20,3,3,20,10,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(21,4,1,21,3,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(22,4,2,22,5,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(23,5,3,23,100,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(24,5,3,24,75,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(25,6,3,25,15,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00'),(26,6,1,26,20,'ALMOXARIFADO','0000-00-00 00:00:00','0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `localizacaos` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-06-27 17:34:29

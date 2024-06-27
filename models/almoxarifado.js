@@ -24,7 +24,7 @@ const Almoxarifado = connection.define('almoxarifados',
         },
         categoriaProd: {
             type: Sequelize.INTEGER,
-            allowNull: false
+            allowNull: false,
         },
         codBarraProd: {
             type: Sequelize.STRING,

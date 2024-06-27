@@ -7,9 +7,10 @@
 }
 
 /* ----------\/ HOVER-ACTIVE-FOCUS EFFECTS \/---------- */
+
 nav a:hover, footer a:hover,
 .title:hover, .btnAtender input:hover,
-.colInfosIndex > .verMais:hover { background: var(--colorTwo); }
+.colInfosIndex > .verMais:hover, .listaGeralAlmoxarifado tr:hover { background: var(--colorTwo); }
 
 nav a:active, footer a:active,
 .title:active, .btnAtender input:active,
@@ -28,9 +29,11 @@ nav a:active, footer a:active,
 .armarios.focused > h3 { border-left: 3px solid var(--colorOne); }
 
 .prateleiras.focused { box-shadow: 0px 0px 20px 5px var(--colorTwo); }
+
 /* ----------/\ HOVER-ACTIVE-FOCUS EFFECTS /\---------- */
 
 /* ----------\/ SCROLLBAR CUSTOMIZATION \/---------- */
+
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
@@ -48,6 +51,7 @@ nav a:active, footer a:active,
     background: var(--colorFour);
     border-radius: 10px;
 }
+
 /* ----------/\ SCROLLBAR CUSTOMIZATION /\---------- */
 
 * {
@@ -105,6 +109,7 @@ nav a {
 .icon { display: none; } /*Menu responsividade*/
 
 /* ----------\/ INDEX.EJS \/---------- */
+
 main {
     position: relative;
     width: 100%;
@@ -320,8 +325,7 @@ main {
 }
 
 .pedido label, .pedido input,
-.itemEstoque label, .itemEstoque input,
-.row label {
+.itemEstoque label, .itemEstoque input {
     width: 100%;
     align-content: center;
     color: #000000;
@@ -332,8 +336,10 @@ main {
     height: 100%;
     padding-right: 1rem;
 }
+
 /* ----------/\ INDEX.EJS /\---------- */
 /* ----------\/ ALMOXARIFADO.EJS \/---------- */
+
 .mainAlmoxarifado {
     position: relative;
     width: 100%;
@@ -364,11 +370,12 @@ main {
     margin-left: 1rem;
 }
 
+/* ----- \/ VIZUALIZAÇÃO RÁPIDA \/ ----- */
 .containerAlmoxarifado {
     width: 100%;
     height: 90%;
     padding: 0.3rem;
-    display: flex;
+    display: none;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -463,8 +470,11 @@ main {
     align-items: center;
 }
 
-.row label { 
+.row label {
+    width: 100%;
     height: 1.5rem;
+    align-content: center;
+    color: #000000; 
     text-align: center;
 }
 
@@ -489,6 +499,60 @@ main {
     display: flex;
     flex-wrap: wrap;
 }
+
+/* -----/\ VIZUALIZAÇÃO RÁPIDA /\----- */
+
+/* -----\/ VIZUALIZAÇÃO LISTA GERAL \/----- */
+
+.listaGeralAlmoxarifado {
+    width: 100%;
+    height: 90%;
+    padding: 1rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.listaGeralAlmoxarifado table { 
+    width: 90%;
+    border-spacing: 0;
+    text-align: center;
+}
+
+.listaGeralAlmoxarifado thead {
+    height: 2.5rem;
+    font-size: 1.5rem;
+    color: var(--colorOne);
+    text-shadow: 3px 1px 5px black;
+    background: var(--colorFour);
+}
+
+.listaGeralAlmoxarifado th { width: 20rem; }
+
+.listaGeralAlmoxarifado i { margin-left: 1rem; }
+
+.listaGeralAlmoxarifado td {
+    height: 3rem;
+    border-bottom: 1px solid #000000;
+}
+
+.prodID {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+    align-content: center;
+}
+
+.listaGeralAlmoxarifado table span { font-size: 1.2rem; }
+
+.listaGeralAlmoxarifado tr:nth-child(even) { background: var(--colorOne); }
+
+/* -----/\ VIZUALIZAÇÃO LISTA GERAL /\----- */
 
 /* ----------/\ ALMOXARIFADO.EJS /\---------- */
 
