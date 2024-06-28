@@ -18,6 +18,10 @@ const Almoxarifado = connection.define('almoxarifados',
             type: Sequelize.STRING,
             allowNull: false
         },
+        corProduto: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
         qtdEstoque: {
             type: Sequelize.INTEGER,
             allowNull: false

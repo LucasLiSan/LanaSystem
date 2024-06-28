@@ -10,7 +10,7 @@
 
 nav a:hover, footer a:hover,
 .title:hover, .btnAtender input:hover,
-.colInfosIndex > .verMais:hover, .listaGeralAlmoxarifado tr:hover { background: var(--colorTwo); }
+.colInfosIndex > .verMais:hover, .gridBodyRow:hover { background: var(--colorTwo); }
 
 nav a:active, footer a:active,
 .title:active, .btnAtender input:active,
@@ -513,44 +513,55 @@ main {
     align-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: auto;
 }
 
-.listaGeralAlmoxarifado table { 
-    width: 90%;
-    border-spacing: 0;
+.gridGeral {
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto;
+    justify-items: center;
+}
+
+.gridHead {
+    width: 95%;
+    height: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+}
+
+.gridHead span {
+    width: 100%;
+    height: 100%;
     text-align: center;
-}
-
-.listaGeralAlmoxarifado thead {
-    height: 2.5rem;
-    font-size: 1.5rem;
-    color: var(--colorOne);
-    text-shadow: 3px 1px 5px black;
-    background: var(--colorFour);
-}
-
-.listaGeralAlmoxarifado th { width: 20rem; }
-
-.listaGeralAlmoxarifado i { margin-left: 1rem; }
-
-.listaGeralAlmoxarifado td {
-    height: 3rem;
-    border-bottom: 1px solid #000000;
-}
-
-.prodID {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: row;
     align-content: center;
+    border-left: 1px solid;
 }
 
-.listaGeralAlmoxarifado table span { font-size: 1.2rem; }
+.gridBody {
+    width: 95%;
+    display: grid;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-items: center;
+}
 
-.listaGeralAlmoxarifado tr:nth-child(even) { background: var(--colorOne); }
+.gridBodyRow {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.gridBodyRow:nth-child(odd) { background: var(--colorOne);}
+
+.gridBody span {
+    width: 100%;
+    height: 3.5rem;
+    text-align: center;
+    align-content: center;
+    border-left: 1px solid;
+}
 
 /* -----/\ VIZUALIZAÇÃO LISTA GERAL /\----- */
 
@@ -661,6 +672,26 @@ footer span {
     }
 
     nav li { padding-left: 0.5rem; }
+
+    .mainAlmoxarifado .title > i {
+        width: 15%;
+        font-size: 1.5rem;
+    }
+
+    .mainAlmoxarifado h1 {
+        height: 3rem;
+        margin-left: 0.3rem;
+        font-size: 2rem;
+    }
+
+    .mainAlmoxarifado h1 > i {
+        margin-left: 0.5rem;
+        font-size: 2rem;
+    }
+
+    .gridHead { grid-template-columns: 10rem 15rem 15rem 15rem 15rem 15rem 15rem; }
+    
+    .gridBodyRow { grid-template-columns: 10rem 15rem 15rem 15rem 15rem 15rem 15rem; }
 }
 
 @media (width < 426px) { 

@@ -27,7 +27,7 @@
                                     <div class="row rowAlt">
                                         <div class="col">
                                             <label for="corItem">Cor:</label>
-                                            <input type="text" name="corItem" value="Azul" disabled>
+                                            <input type="text" name="corItem" value="<%= produto.corProduto %>" disabled>
                                         </div>
                                         <div class="col">
                                             <label for="qtdItem">Quantidade:</label>
@@ -47,42 +47,31 @@
         <% } %>
     </div>
     <div class="listaGeralAlmoxarifado">
-        <table class="sortTable">
-            <thead>
-                <tr>
-                    <th onclick="sortTable(0)">ID:  
-                        <i class="fas fa-sort"></i>
-                    </th>
-                    <th onclick="sortTable(1)">PRODUTO: 
-                        <i class="fas fa-sort"></i>
-                    </th>
-                    <th onclick="sortTable(2)">DESCRIÇÃO: 
-                        <i class="fas fa-sort"></i>
-                    </th>
-                    <th onclick="sortTable(3)">QUANTIDADE: 
-                        <i class="fas fa-sort"></i>
-                    </th>
-                    <th onclick="sortTable(4)">CATEGORIA: 
-                        <i class="fas fa-sort"></i>
-                    </th>
-                    <th onclick="sortTable(5)">CÓD. BARRAS: 
-                        <i class="fas fa-sort"></i>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class="gridGeral">
+            <div class="gridHead">
+                <span>ID: </span>
+                <span>PRODUTO: </span>
+                <span>DESCRIÇÃO: </span>
+                <span>COR: </span>
+                <span>QUANTIDADE: </span>
+                <span>CATEGORIA: </span>
+                <span>CÓD. BARRAS: </span>
+            </div>
+            <div class="gridBody">
                 <% produtos.forEach(produto => { %>
-                    <tr>
-                        <td class="prodID"><span>#</span><%= produto.idProduto %></td>
-                        <td><%= produto.nomeProduto %></td>
-                        <td><%= produto.descricaoProduto %></td>
-                        <td><%= produto.qtdEstoque %></td>
-                        <td><%= produto.categoria.categoria %></td>
-                        <td><%= produto.codBarraProd %></td>
-                    </tr>
+                    <div class="gridBodyRow">
+                        <span>#<%= produto.idProduto %></span>
+                        <span><%= produto.nomeProduto %></span>
+                        <span><%= produto.descricaoProduto %></span>
+                        <span><%= produto.corProduto %></span>
+                        <span><%= produto.qtdEstoque %></span>
+                        <span><%= produto.categoria.categoria %></span>
+                        <span><%= produto.codBarraProd %></span>
+                    </div>
                 <% }); %>
-            </tbody>
-        </table>
+            </div>
+        </div>
+        
     </div>
 </section>
 <script>
