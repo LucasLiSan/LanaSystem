@@ -8,13 +8,9 @@ import ip from "ip";
 const app = express();
 
 /* ----------\/ CRIAÇÃO DO BANCO DE DADOS \/---------- */
-connection.authenticate().then(() => { 
-    console.log("Conexão com o banco realizada com sucesso!")
-}).catch((error) => { console.log(error) });
+connection.authenticate().then(() => { console.log("Conexão com o banco realizada com sucesso!") }).catch((error) => { console.log(error) });
 
-connection.query(`CREATE DATABASE IF NOT EXISTS lanaSystemDB;`).then(() => {
-    console.log("Banco de dados criado!")
-}).catch((error) => { console.log(error) });
+connection.query(`CREATE DATABASE IF NOT EXISTS lanaSystemDB;`).then(() => { console.log("Banco de dados criado!") }).catch((error) => { console.log(error) });
 /* ----------/\ CRIAÇÃO DO BANCO DE DADOS /\---------- */
 
 /* ----------\/ IMPORTANDO E INICIANDO OS CONTROLLERS \/---------- */
@@ -48,7 +44,6 @@ app.use(session({
 
 /* ----------\/ INICIANDO SERVIDOR \/---------- */
 const port = 8080;
-//const server = '192.168.9.74';
 const myServer = ip.address();
 console.log(myServer);
 

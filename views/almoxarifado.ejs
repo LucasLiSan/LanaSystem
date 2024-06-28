@@ -1,101 +1,154 @@
 <%- include ('partials/header.ejs') %>
 <%- include ('partials/nav.ejs') %>
-
-<section class="mainAlmoxarifado">
-    <div class="title">
-        <h1>ALMOXARIFADO <i class="fas fa-boxes"></i></h1>
-        <i class="fas fa-columns" id="columnsIcon"></i>
-        <i class="far fa-list-alt" id="listIcon"></i>
-    </div>
-    <div class="containerAlmoxarifado">
-        <% for (let armario in produtosOrganizados) { %>
-            <div class="armarios" id="armario<%= armario %>" tabindex="0">
-                <h3>ARMÁRIO <%= armario %></h3>
-                <% for (let prateleira in produtosOrganizados[armario]) { %>
-                    <div class="prateleiras" id="A<%= armario %>P<%= prateleira %>" tabindex="0">
-                        <h3>PRATELEIRA <%= prateleira %></h3>
-                        <% produtosOrganizados[armario][prateleira].forEach(produto => { %>
-                            <div class="cardItemAlmoxarifado">
-                                <div class="imgItem">
-                                    <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
-                                </div>
-                                <div class="infosItem">
-                                    <div class="row">
-                                        <label for="nomeItem">Item:</label>
-                                        <input type="text" name="nomeItem" value="<%= produto.nomeProduto %>" disabled>
-                                    </div>
-                                    <div class="row rowAlt">
-                                        <div class="col">
-                                            <label for="corItem">Cor:</label>
-                                            <input type="text" name="corItem" value="<%= produto.corProduto %>" disabled>
+            <section class="mainAlmoxarifado">
+                <div class="title">
+                    <h1>ALMOXARIFADO 
+                        <i class="fas fa-shipping-fast" id="entradasAlmoxarifdo"></i>
+                        <i class="fas fa-dolly-flatbed" id="saidasAlmoxarifdo"></i>
+                    </h1>
+                    <i class="fas fa-columns" id="columnsIcon"></i>
+                    <i class="far fa-list-alt" id="listIcon"></i>
+                </div>
+                <div class="containerAlmoxarifado">
+                    <% for (let armario in produtosOrganizados) { %>
+                        <div class="armarios" id="armario<%= armario %>" tabindex="0">
+                            <h3>ARMÁRIO <%= armario %></h3>
+                            <% for (let prateleira in produtosOrganizados[armario]) { %>
+                                <div class="prateleiras" id="A<%= armario %>P<%= prateleira %>" tabindex="0">
+                                    <h3>PRATELEIRA <%= prateleira %></h3>
+                                    <% produtosOrganizados[armario][prateleira].forEach(produto => { %>
+                                        <div class="cardItemAlmoxarifado">
+                                            <div class="imgItem">
+                                                <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
+                                            </div>
+                                            <div class="infosItem">
+                                                <div class="row">
+                                                    <label for="nomeItem">Item:</label>
+                                                    <input type="text" name="nomeItem" value="<%= produto.nomeProduto %>" disabled>
+                                                </div>
+                                                <div class="row rowAlt">
+                                                    <div class="col">
+                                                        <label for="corItem">Cor:</label>
+                                                        <input type="text" name="corItem" value="<%= produto.corProduto %>" disabled>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="qtdItem">Quantidade:</label>
+                                                        <input type="text" name="qtdItem" value="<%= produto.qtdEstoque %>" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <label for="validItem">Validade:</label>
+                                                    <input type="text" name="validItem" value="Indeterminada" disabled>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col">
-                                            <label for="qtdItem">Quantidade:</label>
-                                            <input type="text" name="qtdItem" value="<%= produto.qtdEstoque %>" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label for="validItem">Validade:</label>
-                                        <input type="text" name="validItem" value="Indeterminada" disabled>
-                                    </div>
+                                    <% }); %>
                                 </div>
-                            </div>
-                        <% }); %>
+                            <% } %>
+                        </div>
+                    <% } %>
+                </div>
+                <div class="listaGeralAlmoxarifado">
+                    <div class="gridGeral">
+                        <div class="gridHead">
+                            <span>ID: </span>
+                            <span>PRODUTO: </span>
+                            <span>DESCRIÇÃO: </span>
+                            <span>COR: </span>
+                            <span>QUANTIDADE: </span>
+                            <span>CATEGORIA: </span>
+                            <span>CÓD. BARRAS: </span>
+                        </div>
+                        <div class="gridBody">
+                            <% produtos.forEach(produto => { %>
+                                <div class="gridBodyRow">
+                                    <span>#<%= produto.idProduto %></span>
+                                    <span><%= produto.nomeProduto %></span>
+                                    <span><%= produto.descricaoProduto %></span>
+                                    <span><%= produto.corProduto %></span>
+                                    <span><%= produto.qtdEstoque %></span>
+                                    <span><%= produto.categoria.categoria %></span>
+                                    <span><%= produto.codBarraProd %></span>
+                                </div>
+                            <% }); %>
+                        </div>
                     </div>
-                <% } %>
-            </div>
-        <% } %>
-    </div>
-    <div class="listaGeralAlmoxarifado">
-        <div class="gridGeral">
-            <div class="gridHead">
-                <span>ID: </span>
-                <span>PRODUTO: </span>
-                <span>DESCRIÇÃO: </span>
-                <span>COR: </span>
-                <span>QUANTIDADE: </span>
-                <span>CATEGORIA: </span>
-                <span>CÓD. BARRAS: </span>
-            </div>
-            <div class="gridBody">
-                <% produtos.forEach(produto => { %>
-                    <div class="gridBodyRow">
-                        <span>#<%= produto.idProduto %></span>
-                        <span><%= produto.nomeProduto %></span>
-                        <span><%= produto.descricaoProduto %></span>
-                        <span><%= produto.corProduto %></span>
-                        <span><%= produto.qtdEstoque %></span>
-                        <span><%= produto.categoria.categoria %></span>
-                        <span><%= produto.codBarraProd %></span>
-                    </div>
-                <% }); %>
-            </div>
-        </div>
-        
-    </div>
-</section>
-<script>
-    document.querySelectorAll('.prateleiras').forEach(prateleira => {
-        prateleira.addEventListener('focus', function() {
-            this.classList.add('focused');
-            this.closest('.armarios').classList.add('focused');
-        });
+                </div>
+                <div class="entradasAlmoxarifado">
+                    <form class="formEntradasAlmoxarifado" action="/almoxarifado/add" method="POST">
+                        <label for="codBarraProd">Código de barras:</label>
+                        <input type="text" name="codBarraProd" required>
+                        <label for="nomeProduto">Item:</label>
+                        <input type="text" name="nomeProduto" required>
+                        <label for="descricaoProduto">Descrição:</label>
+                        <input type="text" name="descricaoProduto" required>
+                        <label for="corProduto">Cor:</label>
+                        <input type="text" name="corProduto" required>
+                        <label for="qtdEstoque">Quantidade:</label>
+                        <input type="text" name="qtdEstoque" required>
+                        <label for="categoriaProd">Categoria:</label>
+                        <select name="categoriaProd" id="categoriaProd" required>
+                            <option value="1">Material de Escritório</option>
+                            <option value="2">Material Escolar</option>
+                            <option value="3">Material Didático</option>
+                            <option value="4">Material de Arte</option>
+                            <option value="5">Equipamentos de Tecnologia</option>
+                            <option value="6">Material de Limpeza</option>
+                            <option value="7">Equipamentos de Segurança</option>
+                            <option value="8">Móveis e Equipamentos</option>
+                            <option value="9">Material de Educação Física</option>
+                            <option value="10">Material de Música</option>
+                            <option value="11">Material de Ciências</option>
+                            <option value="12">Suprimentos de Refeição</option>
+                            <option value="13">Material de Jardinagem</option>
+                        </select>
+                        <input type="submit" value="CADASTRAR">
+                    </form>
+                </div>
+                <div class="saidasAlmoxarifado">
 
-        prateleira.addEventListener('blur', function() {
-            this.classList.remove('focused');
-            this.closest('.armarios').classList.remove('focused');
-        });
-    });
+                </div>
+            </section>
+            <script>
+                document.querySelectorAll('.prateleiras').forEach(prateleira => {
+                    prateleira.addEventListener('focus', function() {
+                        this.classList.add('focused');
+                        this.closest('.armarios').classList.add('focused');
+                    });
 
-    document.getElementById('columnsIcon').addEventListener('click', function() {
-            document.querySelector('.listaGeralAlmoxarifado').style.display = 'none';
-            document.querySelector('.containerAlmoxarifado').style.display = 'flex';
-        });
+                    prateleira.addEventListener('blur', function() {
+                        this.classList.remove('focused');
+                        this.closest('.armarios').classList.remove('focused');
+                    });
+                });
 
-    document.getElementById('listIcon').addEventListener('click', function() {
-        document.querySelector('.listaGeralAlmoxarifado').style.display = 'flex';
-        document.querySelector('.containerAlmoxarifado').style.display = 'none';
-    });
-</script>
+                document.getElementById('columnsIcon').addEventListener('click', function() {
+                    document.querySelector('.containerAlmoxarifado').style.display = 'flex';
+                    document.querySelector('.listaGeralAlmoxarifado').style.display = 'none';
+                    document.querySelector('.entradasAlmoxarifado').style.display = 'none';
+                    document.querySelector('.saidasAlmoxarifado').style.display = 'none';
+                });
+
+                document.getElementById('listIcon').addEventListener('click', function() {
+                    document.querySelector('.containerAlmoxarifado').style.display = 'none';
+                    document.querySelector('.listaGeralAlmoxarifado').style.display = 'flex';
+                    document.querySelector('.entradasAlmoxarifado').style.display = 'none';
+                    document.querySelector('.saidasAlmoxarifado').style.display = 'none';
+                });
+
+                document.getElementById('entradasAlmoxarifdo').addEventListener('click', function() {
+                    document.querySelector('.containerAlmoxarifado').style.display = 'none';
+                    document.querySelector('.listaGeralAlmoxarifado').style.display = 'none';
+                    document.querySelector('.entradasAlmoxarifado').style.display = 'flex';
+                    document.querySelector('.saidasAlmoxarifado').style.display = 'none';
+                });
+
+                document.getElementById('saidasAlmoxarifdo').addEventListener('click', function() {
+                    document.querySelector('.containerAlmoxarifado').style.display = 'none';
+                    document.querySelector('.listaGeralAlmoxarifado').style.display = 'none';
+                    document.querySelector('.entradasAlmoxarifado').style.display = 'none';
+                    document.querySelector('.saidasAlmoxarifado').style.display = 'flex';
+                });
+            </script>
 
 <%- include ('partials/footer.ejs') %>

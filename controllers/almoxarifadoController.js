@@ -48,4 +48,8 @@ router.get('/almoxarifado', async function(req, res) {
 });
 /* ----------/\ ROTA PRINCIPAL VIEW ALMOXARIFADO /\---------- */
 
+/* ----------\/ ROTA ADIÇÃO NO DB ALMOXARIFADO \/---------- */
+//router.post('/almoxarifado/add')
+/* ----------/\ ROTA ADIÇÃO NO DB ALMOXARIFADO /\---------- */
+
 export default router;
