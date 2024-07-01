@@ -4,6 +4,7 @@
                 <div class="title">
                     <h1>ALMOXARIFADO 
                         <i class="fas fa-shipping-fast" id="entradasAlmoxarifdo"></i>
+                        <i class="fas fa-clipboard-list" id="internoAlmoxarifdo"></i>
                         <i class="fas fa-dolly-flatbed" id="saidasAlmoxarifdo"></i>
                     </h1>
                     <i class="fas fa-columns" id="columnsIcon"></i>
@@ -75,39 +76,90 @@
                     </div>
                 </div>
                 <div class="entradasAlmoxarifado">
-                    <form class="formEntradasAlmoxarifado" action="/almoxarifado/add" method="POST">
-                        <label for="codBarraProd">Código de barras:</label>
-                        <input type="text" name="codBarraProd" required>
-                        <label for="nomeProduto">Item:</label>
-                        <input type="text" name="nomeProduto" required>
-                        <label for="descricaoProduto">Descrição:</label>
-                        <input type="text" name="descricaoProduto" required>
-                        <label for="corProduto">Cor:</label>
-                        <input type="text" name="corProduto" required>
-                        <label for="qtdEstoque">Quantidade:</label>
-                        <input type="text" name="qtdEstoque" required>
-                        <label for="categoriaProd">Categoria:</label>
-                        <select name="categoriaProd" id="categoriaProd" required>
-                            <option value="1">Material de Escritório</option>
-                            <option value="2">Material Escolar</option>
-                            <option value="3">Material Didático</option>
-                            <option value="4">Material de Arte</option>
-                            <option value="5">Equipamentos de Tecnologia</option>
-                            <option value="6">Material de Limpeza</option>
-                            <option value="7">Equipamentos de Segurança</option>
-                            <option value="8">Móveis e Equipamentos</option>
-                            <option value="9">Material de Educação Física</option>
-                            <option value="10">Material de Música</option>
-                            <option value="11">Material de Ciências</option>
-                            <option value="12">Suprimentos de Refeição</option>
-                            <option value="13">Material de Jardinagem</option>
-                        </select>
-                        <input type="submit" value="CADASTRAR">
+                    <h4>CADASTRO</h4>
+                    <form class="formEntradasAlmoxarifado" action="/almoxarifado/add" method="POST" tabindex="0">
+                        <div class="rowForm">
+                            <div class="colForm">
+                                <label for="codBarraProd">Código de barras:</label>
+                                <input type="text" name="codBarraProd" required>
+                            </div>
+                            <div class="colForm">
+                                <label for="nomeProduto">Item:</label>
+                                <input type="text" name="nomeProduto" required>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <div class="colForm">
+                                <label for="descricaoProduto">Descrição:</label>
+                                <input type="text" name="descricaoProduto" required>
+                            </div>
+                            <div class="colForm">
+                                <label for="corProduto">Cor:</label>
+                                <input type="text" name="corProduto" required>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <div class="colForm">
+                                <label for="qtdEstoque">Quantidade:</label>
+                                <input type="text" name="qtdEstoque" required>
+                            </div>
+                            <div class="colForm">
+                                <label for="categoriaProd">Categoria:</label>
+                                <select name="categoriaProd" id="categoriaProd" required>
+                                    <option value="1">Material de Escritório</option>
+                                    <option value="2">Material Escolar</option>
+                                    <option value="3">Material Didático</option>
+                                    <option value="4">Material de Arte</option>
+                                    <option value="5">Equipamentos de Tecnologia</option>
+                                    <option value="6">Material de Limpeza</option>
+                                    <option value="7">Equipamentos de Segurança</option>
+                                    <option value="8">Móveis e Equipamentos</option>
+                                    <option value="9">Material de Educação Física</option>
+                                    <option value="10">Material de Música</option>
+                                    <option value="11">Material de Ciências</option>
+                                    <option value="12">Suprimentos de Refeição</option>
+                                    <option value="13">Material de Jardinagem</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <div class="colForm">
+                                <label for="armarioaAlmoxarifado">ARMARIO:</label>
+                                <select name="armarioaAlmoxarifado" id="armarioaAlmoxarifado" required>
+                                    <option value="0">RECEBENDO</option>
+                                    <option value="1">Armario 1</option>
+                                    <option value="2">Armario 2</option>
+                                    <option value="3">Armario 3</option>
+                                    <option value="4">Armario 4</option>
+                                    <option value="5">Armario 5</option>
+                                    <option value="6">Armario 6</option>
+                                    <option value="7">Armario 7</option>
+                                </select>
+                            </div>
+                            <div class="colForm">
+                                <label for="prateleiraAlmoxarifado">PRATELEIRA:</label>
+                                <select name="prateleiraAlmoxarifado" id="prateleiraAlmoxarifado" required>
+                                    <option value="0">RECEBENDO</option>
+                                    <option value="1">Prateleira 1</option>
+                                    <option value="2">Prateleira 2</option>
+                                    <option value="3">Prateleira 3</option>
+                                    <option value="4">Prateleira 4</option>
+                                    <option value="5">Prateleira 5</option>
+                                    <option value="6">Prateleira 6</option>
+                                    <option value="7">Prateleira 7</option>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="submit" class="btnFormEntradasAlmoxarifado" value="CADASTRAR">
                     </form>
                 </div>
-                <div class="saidasAlmoxarifado">
-
+                <div class="internoAlmoxarifdo">
+                    <h4>ORGANIZAÇÃO INTERNA</h4>
+                    <div class="interno">
+                        
+                    </div>
                 </div>
+                <div class="saidasAlmoxarifado"></div>
             </section>
             <script>
                 document.querySelectorAll('.prateleiras').forEach(prateleira => {
@@ -126,6 +178,7 @@
                     document.querySelector('.containerAlmoxarifado').style.display = 'flex';
                     document.querySelector('.listaGeralAlmoxarifado').style.display = 'none';
                     document.querySelector('.entradasAlmoxarifado').style.display = 'none';
+                    document.querySelector('.internoAlmoxarifdo').style.display = 'none';
                     document.querySelector('.saidasAlmoxarifado').style.display = 'none';
                 });
 
@@ -133,6 +186,7 @@
                     document.querySelector('.containerAlmoxarifado').style.display = 'none';
                     document.querySelector('.listaGeralAlmoxarifado').style.display = 'flex';
                     document.querySelector('.entradasAlmoxarifado').style.display = 'none';
+                    document.querySelector('.internoAlmoxarifdo').style.display = 'none';
                     document.querySelector('.saidasAlmoxarifado').style.display = 'none';
                 });
 
@@ -140,6 +194,15 @@
                     document.querySelector('.containerAlmoxarifado').style.display = 'none';
                     document.querySelector('.listaGeralAlmoxarifado').style.display = 'none';
                     document.querySelector('.entradasAlmoxarifado').style.display = 'flex';
+                    document.querySelector('.internoAlmoxarifdo').style.display = 'none';
+                    document.querySelector('.saidasAlmoxarifado').style.display = 'none';
+                });
+
+                document.getElementById('internoAlmoxarifdo').addEventListener('click', function() {
+                    document.querySelector('.containerAlmoxarifado').style.display = 'none';
+                    document.querySelector('.listaGeralAlmoxarifado').style.display = 'none';
+                    document.querySelector('.entradasAlmoxarifado').style.display = 'none';
+                    document.querySelector('.internoAlmoxarifdo').style.display = 'flex';
                     document.querySelector('.saidasAlmoxarifado').style.display = 'none';
                 });
 
@@ -147,6 +210,7 @@
                     document.querySelector('.containerAlmoxarifado').style.display = 'none';
                     document.querySelector('.listaGeralAlmoxarifado').style.display = 'none';
                     document.querySelector('.entradasAlmoxarifado').style.display = 'none';
+                    document.querySelector('.internoAlmoxarifdo').style.display = 'none';
                     document.querySelector('.saidasAlmoxarifado').style.display = 'flex';
                 });
             </script>
