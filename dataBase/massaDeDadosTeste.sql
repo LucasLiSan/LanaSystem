@@ -47,44 +47,11 @@ INSERT INTO almoxarifados (nomeProduto, descricaoProduto, corProduto, qtdEstoque
 
 select * from almoxarifados;
 
+UPDATE almoxarifados
+SET nomeProduto = 'Caneta Azul'
+WHERE idProduto = 1;
+
 INSERT INTO localizacaos (armario, prateleira, idProdutoGuardado, qtdPrdoGuardado, localArmario) VALUES
-(1, 1, 1, 100, 'ALMOXARIFADO'),
-(1, 2, 2, 200, 'ALMOXARIFADO'),
-
-(2, 1, 3, 50, 'ALMOXARIFADO'),
-(2, 2, 4, 75, 'AALMOXARIFADO'),
-
-(3, 1, 5, 30, 'ALMOXARIFADO'),
-(3, 2, 6, 60, 'ALMOXARIFADO'),
-
-(4, 1, 7, 40, 'ALMOXARIFADO'),
-(4, 2, 8, 50, 'ALMOXARIFADO'),
-
-(5, 1, 9, 20, 'ALMOXARIFADO'),
-(5, 2, 10, 10, 'ALMOXARIFADO'),
-
-(6, 1, 11, 30, 'ALMOXARIFADO'),
-(6, 2, 12, 20, 'ALMOXARIFADO'),
-
-(7, 1, 13, 5, 'ALMOXARIFADO'),
-(7, 2, 14, 8, 'ALMOXARIFADO'),
-
-(8, 1, 15, 25, 'ALMOXARIFADO'),
-(8, 2, 16, 50, 'ALMOXARIFADO'),
-
-(9, 1, 17, 10, 'ALMOXARIFADO'),
-(9, 2, 18, 15, 'ALMOXARIFADO'),
-
-(10, 1, 19, 8, 'ALMOXARIFADO'),
-(10, 2, 20, 10, 'ALMOXARIFADO'),
-
-(11, 1, 21, 3, 'ALMOXARIFADO'),
-(11, 2, 22, 5, 'ALMOXARIFADO'),
-
-(12, 1, 23, 100, 'ALMOXARIFADO'),
-(12, 2, 24, 75, 'ALMOXARIFADO'),
-
-(13, 1, 25, 15, 'ALMOXARIFADO'),
-(13, 2, 26, 20, 'ALMOXARIFADO');
+(1,3,27,1,'ALMOXARIFADO');
 
 select * from localizacaos;

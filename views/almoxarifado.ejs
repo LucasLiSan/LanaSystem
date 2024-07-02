@@ -155,13 +155,120 @@
                 </div>
                 <div class="internoAlmoxarifdo">
                     <h4>ORGANIZAÇÃO INTERNA</h4>
-                    <div class="interno">
-                        
-                    </div>
+                    <form class="formInterno" action="/almoxarifado/edit" method="POST" tabindex="0">
+                        <div class="desorganizado">
+                            <% for (let armario in produtosOrganizados) { %>
+                                <% if (armario == 0) { %>
+                                    <div class="armarios armarioForm" id="armario<%= armario %>" tabindex="0">
+                                        <h3>RECEBIDOS</h3>
+                                        <% for (let prateleira in produtosOrganizados[armario]) { %>
+                                            <div class="prateleiras" id="A<%= armario %>P<%= prateleira %>" tabindex="0">
+                                                <h3>A organizar</h3>
+                                                <% produtosOrganizados[armario][prateleira].forEach(produto => { %>
+                                                    <div class="cardItemAlmoxarifado">
+                                                        <div class="imgItem">
+                                                            <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
+                                                        </div>
+                                                        <div class="infosItem">
+                                                            <div class="row rowAlt">
+                                                                <div class="col">
+                                                                    <label for="codBarraProd">Cód. Barra</label>
+                                                                    <input type="text" name="codBarraProd" value="<%= produto.codBarraProd %>" disabled>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label for="nomeItem">Item:</label>
+                                                                    <input type="text" name="idProduto" value="<%= produto.idProduto %>" hidden>
+                                                                    <input type="text" name="nomeItem" value="<%= produto.nomeProduto %>" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row rowAlt">
+                                                                <div class="col">
+                                                                    <label for="corItem">Cor:</label>
+                                                                    <input type="text" name="corItem" value="<%= produto.corProduto %>" disabled>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label for="qtdItem">Quantidade:</label>
+                                                                    <input type="text" id="qtdItemDesorganizado<%= produto.idProduto %>" name="qtdItem" value="<%= produto.qtdEstoque %>" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <label for="validItem">Validade:</label>
+                                                                <input type="text" name="validItem" value="Indeterminada" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <% }); %>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                <% } %>
+                            <% } %>
+                        </div>
+                        <div class="organizar">
+                            <div class="armarios armarioForm" tabindex="0">
+                                <h3>DESTINOS
+                                    <i id="moreCards" class="fas fa-plus-circle"></i>
+                                </h3>
+                                <div class="prateleiras" tabindex="0">
+                                    <h3>ORGANIZANDO</h3>
+                                    <div class="cardItemAlmoxarifado">
+                                        <div class="imgItem">
+                                            <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
+                                        </div>
+                                        <div class="infosItem">
+                                            <div class="row rowAlt">
+                                                <div class="col">
+                                                    <label for="codBarraProd">Cód. Barra</label>
+                                                    <select id="codBarraProdSelect" name="codBarraProd">
+                                                        <option value="">SELECIONE</option>
+                                                        <% for (let armario in produtosOrganizados) { %>
+                                                            <% if (armario == 0) { %>
+                                                                <% for (let prateleira in produtosOrganizados[armario]) { %>
+                                                                    <% produtosOrganizados[armario][prateleira].forEach(produto => { %>
+                                                                        <option value="<%= produto.codBarraProd %>"
+                                                                            data-id="<%= produto.idProduto %>"
+                                                                            data-nome="<%= produto.nomeProduto %>"
+                                                                            data-cor="<%= produto.corProduto %>"
+                                                                            data-qtd="<%= produto.qtdEstoque %>">
+                                                                        <%= produto.codBarraProd %>
+                                                                        </option>
+                                                                    <% }); %>
+                                                                <% } %>
+                                                            <% } %>
+                                                        <% } %>
+                                                    </select>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="nomeItem">Item:</label>
+                                                    <input type="text" id="nomeItem" name="nomeItem">
+                                                </div>
+                                            </div>
+                                            <div class="row rowAlt">
+                                                <div class="col">
+                                                    <label for="corItem">Cor:</label>
+                                                    <input type="text" id="corItem" name="corItem">
+                                                </div>
+                                                <div class="col">
+                                                    <label for="qtdItem">Quantidade:</label>
+                                                    <input type="number" id="qtdItem" name="qtdItem" min="0">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <label for="validItem">Validade:</label>
+                                                <input type="text" id="validItem" name="validItem">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="newCard"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="saidasAlmoxarifado"></div>
             </section>
             <script>
+                // ---------- EFEITO DE FOCUS ---------- //
                 document.querySelectorAll('.prateleiras').forEach(prateleira => {
                     prateleira.addEventListener('focus', function() {
                         this.classList.add('focused');
@@ -173,7 +280,9 @@
                         this.closest('.armarios').classList.remove('focused');
                     });
                 });
+                // ---------- EFEITO DE FOCUS ---------- //
 
+                // ---------- MOSTRAR ESCONDER DIVS ---------- //
                 document.getElementById('columnsIcon').addEventListener('click', function() {
                     document.querySelector('.containerAlmoxarifado').style.display = 'flex';
                     document.querySelector('.listaGeralAlmoxarifado').style.display = 'none';
@@ -212,6 +321,102 @@
                     document.querySelector('.entradasAlmoxarifado').style.display = 'none';
                     document.querySelector('.internoAlmoxarifdo').style.display = 'none';
                     document.querySelector('.saidasAlmoxarifado').style.display = 'flex';
+                });
+                // ---------- MOSTRAR ESCONDER DIVS ---------- //
+
+                // Função para adicionar eventos aos novos cards
+                function attachEventListenersToNewCard(card) {
+                    // Evento Change para carregar informações
+                    card.querySelector('.codBarraProdSelect').addEventListener('change', function() {
+                        var selectedOption = this.options[this.selectedIndex];
+                        var nomeProduto = selectedOption.getAttribute('data-nome');
+                        var corProduto = selectedOption.getAttribute('data-cor');
+                        var qtdEstoque = selectedOption.getAttribute('data-qtd');
+                        var produtoId = selectedOption.getAttribute('data-id');
+
+                        card.querySelector('.nomeItem').value = nomeProduto;
+                        card.querySelector('.corItem').value = corProduto;
+                        card.querySelector('.qtdItem').value = qtdEstoque;
+                        card.querySelector('.qtdItem').setAttribute('data-id', produtoId);  // Store the id for later use
+                        card.querySelector('.qtdItem').setAttribute('data-original-qtd', qtdEstoque); // Store the original quantity for validation
+                    });
+
+                    // Evento Input para fazer a troca de dados
+                    card.querySelector('.qtdItem').addEventListener('input', function() {
+                        var quantidadeOrganizar = parseInt(this.value);
+                        var produtoId = this.getAttribute('data-id');
+                        var qtdDesorganizadoElement = card.querySelector('#qtdItemDesorganizado' + produtoId);
+                        var qtdDesorganizado = parseInt(qtdDesorganizadoElement.value);
+                        var originalQtd = parseInt(this.getAttribute('data-original-qtd'));
+
+                        if (!isNaN(quantidadeOrganizar) && quantidadeOrganizar <= originalQtd) {
+                            qtdDesorganizadoElement.value = originalQtd - quantidadeOrganizar;
+                        } else {
+                            alert('A quantidade para organizar não pode ser maior que a quantidade disponível.');
+                            this.value = originalQtd;
+                            qtdDesorganizadoElement.value = 0;
+                        }
+                    });
+                }
+
+                // Evento para adicionar novos cards
+                document.getElementById('moreCards').addEventListener('click', function() {
+                    const newCardHTML = `
+                        <div class="cardItemAlmoxarifado">
+                            <div class="imgItem">
+                                <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
+                            </div>
+                            <div class="infosItem">
+                                <div class="row rowAlt">
+                                    <div class="col">
+                                        <label for="codBarraProd">Cód. Barra</label>
+                                        <select name="codBarraProd" class="codBarraProdSelect">
+                                            <option value="">SELECIONE</option>
+                                            <% for (let armario in produtosOrganizados) { %>
+                                                <% if (armario == 0) { %>
+                                                    <% for (let prateleira in produtosOrganizados[armario]) { %>
+                                                        <% produtosOrganizados[armario][prateleira].forEach(produto => { %>
+                                                            <option value="<%= produto.codBarraProd %>"
+                                                                data-id="<%= produto.idProduto %>"
+                                                                data-nome="<%= produto.nomeProduto %>"
+                                                                data-cor="<%= produto.corProduto %>"
+                                                                data-qtd="<%= produto.qtdEstoque %>">
+                                                            <%= produto.codBarraProd %>
+                                                            </option>
+                                                        <% }); %>
+                                                    <% } %>
+                                                <% } %>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="nomeItem">Item:</label>
+                                        <input type="text" name="nomeItem" class="nomeItem">
+                                    </div>
+                                </div>
+                                <div class="row rowAlt">
+                                    <div class="col">
+                                        <label for="corItem">Cor:</label>
+                                        <input type="text" name="corItem" class="corItem">
+                                    </div>
+                                    <div class="col">
+                                        <label for="qtdItem">Quantidade:</label>
+                                        <input type="number" name="qtdItem" class="qtdItem" min="0" data-id="" data-original-qtd="">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label for="validItem">Validade:</label>
+                                    <input type="text" name="validItem" class="validItem">
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    const newCardContainer = document.querySelector('.newCard');
+                    newCardContainer.insertAdjacentHTML('beforeend', newCardHTML);
+
+                    // Após adicionar o novo card, atribui os eventos a ele
+                    attachEventListenersToNewCard(newCardContainer.lastElementChild);
                 });
             </script>
 
