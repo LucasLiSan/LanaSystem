@@ -156,65 +156,68 @@
                 <div class="internoAlmoxarifdo">
                     <h4>ORGANIZAÇÃO INTERNA</h4>
                     <form class="formInterno" action="/almoxarifado/edit" method="POST" tabindex="0">
-                        <div class="desorganizado">
-                            <% for (let armario in produtosOrganizados) { %>
-                                <% if (armario == 0) { %>
-                                    <div class="armarios armarioForm" id="armario<%= armario %>" tabindex="0">
-                                        <h3>RECEBIDOS</h3>
-                                        <% for (let prateleira in produtosOrganizados[armario]) { %>
-                                            <div class="prateleiras" id="A<%= armario %>P<%= prateleira %>" tabindex="0">
-                                                <h3>A organizar</h3>
-                                                <% produtosOrganizados[armario][prateleira].forEach(produto => { %>
-                                                    <div class="cardItemAlmoxarifado">
-                                                        <div class="imgItem">
-                                                            <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
+                        <div class="bodyForm">
+                            <div class="desorganizado">
+                                <% for (let armario in produtosOrganizados) { %>
+                                    <% if (armario == 0) { %>
+                                        <div class="armarios armarioForm" id="armario<%= armario %>" tabindex="0">
+                                            <h3>RECEBIDOS</h3>
+                                            <% for (let prateleira in produtosOrganizados[armario]) { %>
+                                                <div class="prateleiras" id="A<%= armario %>P<%= prateleira %>" tabindex="0">
+                                                    <h3>A organizar</h3>
+                                                    <% produtosOrganizados[armario][prateleira].forEach(produto => { %>
+                                                        <div class="cardItemAlmoxarifado">
+                                                            <div class="imgItem">
+                                                                <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
+                                                            </div>
+                                                            <div class="infosItem">
+                                                                <div class="row rowAlt">
+                                                                    <div class="col">
+                                                                        <label for="codBarraProd">Cód. Barra</label>
+                                                                        <input type="text" name="codBarraProd" value="<%= produto.codBarraProd %>" disabled>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <label for="nomeItem">Item:</label>
+                                                                        <input type="text" name="idProdutoDesorg" value="<%= produto.idProduto %>" hidden>
+                                                                        <input type="text" name="nomeItem" value="<%= produto.nomeProduto %>" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row rowAlt">
+                                                                    <div class="col">
+                                                                        <label for="corItem">Cor:</label>
+                                                                        <input type="text" name="corItem" value="<%= produto.corProduto %>" disabled>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <label for="qtdItem">Quantidade:</label>
+                                                                        <input type="text" id="qtdItemDesorganizado<%= produto.idProduto %>" name="qtdItem" value="<%= produto.qtdEstoque %>" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label for="descricaoProduto">Validade:</label>
+                                                                    <input type="text" name="descricaoProduto" value="<%= produto.descricaoProduto %>" disabled>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="infosItem">
-                                                            <div class="row rowAlt">
-                                                                <div class="col">
-                                                                    <label for="codBarraProd">Cód. Barra</label>
-                                                                    <input type="text" name="codBarraProd" value="<%= produto.codBarraProd %>" disabled>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <label for="nomeItem">Item:</label>
-                                                                    <input type="text" name="idProduto" value="<%= produto.idProduto %>" hidden>
-                                                                    <input type="text" name="nomeItem" value="<%= produto.nomeProduto %>" disabled>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row rowAlt">
-                                                                <div class="col">
-                                                                    <label for="corItem">Cor:</label>
-                                                                    <input type="text" name="corItem" value="<%= produto.corProduto %>" disabled>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <label for="qtdItem">Quantidade:</label>
-                                                                    <input type="text" id="qtdItemDesorganizado<%= produto.idProduto %>" name="qtdItem" value="<%= produto.qtdEstoque %>" disabled>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <label for="validItem">Validade:</label>
-                                                                <input type="text" name="validItem" value="Indeterminada" disabled>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <% }); %>
-                                            </div>
-                                        <% } %>
-                                    </div>
+                                                    <% }); %>
+                                                </div>
+                                            <% } %>
+                                        </div>
+                                    <% } %>
                                 <% } %>
-                            <% } %>
-                        </div>
-                        <div class="organizar">
-                            <div class="armarios armarioForm" tabindex="0">
-                                <h3>DESTINOS
-                                    <i id="moreCards" class="fas fa-plus-circle"></i>
-                                </h3>
-                                <div class="prateleiras" tabindex="0">
-                                    <h3>ORGANIZANDO</h3>
-                                    <div class="newCard"></div>
+                            </div>
+                            <div class="organizar">
+                                <div class="armarios armarioForm" tabindex="0">
+                                    <h3>DESTINOS
+                                        <i id="moreCards" class="fas fa-plus-circle"></i>
+                                    </h3>
+                                    <div class="prateleiras" tabindex="0">
+                                        <h3>ORGANIZANDO</h3>
+                                        <div class="newCard"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <input type="submit" class="btnFormEntradasAlmoxarifado" value="CADASTRAR">
                     </form>
                 </div>
                 <div class="saidasAlmoxarifado"></div>
@@ -276,39 +279,10 @@
                 });
                 // ---------- MOSTRAR ESCONDER DIVS ---------- //
 
-                /*document.getElementById('codBarraProdSelect').addEventListener('change', function() {
-                    var selectedOption = this.options[this.selectedIndex];
-                    var nomeProduto = selectedOption.getAttribute('data-nome');
-                    var corProduto = selectedOption.getAttribute('data-cor');
-                    var qtdEstoque = selectedOption.getAttribute('data-qtd');
-                    var produtoId = selectedOption.getAttribute('data-id');
-
-                    document.getElementById('nomeItem').value = nomeProduto;
-                    document.getElementById('corItem').value = corProduto;
-                    document.getElementById('qtdItem').value = qtdEstoque;
-                    document.getElementById('qtdItem').setAttribute('data-id', produtoId);  // Store the id for later use
-                    document.getElementById('qtdItem').setAttribute('data-original-qtd', qtdEstoque); // Store the original quantity for validation
-                });
-
-                document.getElementById('qtdItem').addEventListener('input', function() {
-                    var quantidadeOrganizar = parseInt(this.value);
-                    var produtoId = this.getAttribute('data-id');
-                    var qtdDesorganizadoElement = document.getElementById('qtdItemDesorganizado' + produtoId);
-                    var qtdDesorganizado = parseInt(qtdDesorganizadoElement.value);
-                    var originalQtd = parseInt(this.getAttribute('data-original-qtd'));
-
-                    if (!isNaN(quantidadeOrganizar) && quantidadeOrganizar <= originalQtd) {
-                        qtdDesorganizadoElement.value = originalQtd - quantidadeOrganizar;
-                    } else {
-                        alert('A quantidade para organizar não pode ser maior que a quantidade disponível.');
-                        this.value = originalQtd;
-                        qtdDesorganizadoElement.value = 0;
-                    }
-                });*/
+                // ---------- CRIAÇÃO DE NOVOS CARDS COM ORGANIZAÇÃO CONFORME DISPONIBILIDADE ---------- //
                 document.getElementById('moreCards').addEventListener('click', function() {
                     var newCard = document.createElement('div');
                     newCard.className = 'cardItemAlmoxarifado';
-
                     newCard.innerHTML = `
                         <div class="imgItem">
                             <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
@@ -316,8 +290,8 @@
                         <div class="infosItem">
                             <div class="row rowAlt">
                                 <div class="col">
-                                    <label for="codBarraProd">Cód. Barra</label>
-                                    <select class="codBarraProdSelect" name="codBarraProd">
+                                    <label for="codBarraProdNew">Cód. Barra</label>
+                                    <select class="codBarraProdSelect" name="codBarraProdNew">
                                         <option value="">SELECIONE</option>
                                         <% for (let armario in produtosOrganizados) { %>
                                             <% if (armario == 0) { %>
@@ -326,6 +300,7 @@
                                                         <option value="<%= produto.codBarraProd %>"
                                                             data-id="<%= produto.idProduto %>"
                                                             data-nome="<%= produto.nomeProduto %>"
+                                                            data-desc="<%= produto.descricaoProduto %>"
                                                             data-cor="<%= produto.corProduto %>"
                                                             data-qtd="<%= produto.qtdEstoque %>">
                                                             <%= produto.codBarraProd %>
@@ -337,23 +312,33 @@
                                     </select>
                                 </div>
                                 <div class="col">
-                                    <label for="nomeItem">Item:</label>
-                                    <input type="text" class="nomeItem" name="nomeItem" disabled>
+                                    <label for="nomeItemNew">Item:</label>
+                                    <input type="text" class="nomeItem" name="nomeItemNew">
                                 </div>
                             </div>
                             <div class="row rowAlt">
                                 <div class="col">
-                                    <label for="corItem">Cor:</label>
-                                    <input type="text" class="corItem" name="corItem" disabled>
+                                    <label for="corItemNew">Cor:</label>
+                                    <input type="text" class="corItem" name="corItemNew">
                                 </div>
                                 <div class="col">
-                                    <label for="qtdItem">Quantidade:</label>
-                                    <input type="number" class="qtdItem" name="qtdItem" min="0">
+                                    <label for="qtdItemNew">Quantidade:</label>
+                                    <input type="number" class="qtdItem" name="qtdItemNew" min="0">
                                 </div>
                             </div>
                             <div class="row">
-                                <label for="validItem">Validade:</label>
-                                <input type="text" class="validItem" name="validItem" disabled>
+                                <label for="descrProdNew">Validade:</label>
+                                <input type="text" class="descrProd" name="descrProdNew">
+                            </div>
+                            <div class="row rowAlt">
+                                <div class="col">
+                                    <label for="armarioDest">Armario:</label>
+                                    <input type="text" name="armarioDest">
+                                </div>
+                                <div class="col">
+                                    <label for="prateleiraDest">Prateleira:</label>
+                                    <input type="text" name="prateleiraDest">
+                                </div>
                             </div>
                         </div>
                     `;
@@ -370,10 +355,12 @@
                         var nomeProduto = selectedOption.getAttribute('data-nome');
                         var corProduto = selectedOption.getAttribute('data-cor');
                         var qtdEstoque = selectedOption.getAttribute('data-qtd');
+                        var descProd = selectedOption.getAttribute('data-desc');
                         var produtoId = selectedOption.getAttribute('data-id');
 
                         card.querySelector('.nomeItem').value = nomeProduto;
                         card.querySelector('.corItem').value = corProduto;
+                        card.querySelector('.descrProd').value = descProd;
                         qtdItemInput.value = qtdEstoque;
                         qtdItemInput.setAttribute('data-id', produtoId);
                         qtdItemInput.setAttribute('data-original-qtd', qtdEstoque);
@@ -397,8 +384,8 @@
                         }
                     });
                 }
-                // Attach initial event listeners
                 document.querySelectorAll('.cardItemAlmoxarifado').forEach(attachEventListeners);
+                // ---------- CRIAÇÃO DE NOVOS CARDS COM ORGANIZAÇÃO CONFORME DISPONIBILIDADE ---------- //
             </script>
 
 <%- include ('partials/footer.ejs') %>

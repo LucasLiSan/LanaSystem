@@ -10,13 +10,14 @@
 
 nav a:hover, footer a:hover,
 .title:hover, .btnAtender input:hover,
-.colInfosIndex > .verMais:hover, .gridBodyRow:hover { background: var(--colorTwo); }
+.colInfosIndex > .verMais:hover, .gridBodyRow:hover,
+.formInterno > .btnFormEntradasAlmoxarifado:hover { background: var(--colorTwo); }
 
 nav a:hover > .dropdown { display: block;}
 
 nav a:active, footer a:active,
 .title:active, .btnAtender input:active,
-.colInfosIndex > .verMais:active { background: var(--colorThree); }
+.colInfosIndex > .verMais:active, .formInterno > .btnFormEntradasAlmoxarifado:active { background: var(--colorThree); }
 
 i#columnsIcon:active, i#listIcon:active,
 i#entradasAlmoxarifdo:active, i#saidasAlmoxarifdo:active,
@@ -696,6 +697,15 @@ main {
     height: 85%;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.bodyForm {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
 }
 
 .desorganizado {
@@ -716,6 +726,13 @@ main {
 .armarioForm h3 > i {
     position: relative;
     left: 31rem;
+}
+
+.formInterno > .btnFormEntradasAlmoxarifado {
+    width: 20%;
+    height: 6%;
+    border-radius: 1rem;
+    background: var(--colorOne);
 }
 
 /* -----/\ TELA EDIÇÃO/CADASTRO INTERNO (UPDATES) /\----- */
