@@ -192,9 +192,29 @@
                                                                         <input type="text" id="qtdItemDesorganizado<%= produto.idProduto %>" name="qtdItem" value="<%= produto.qtdEstoque %>" disabled>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <label for="descricaoProduto">Validade:</label>
-                                                                    <input type="text" name="descricaoProduto" value="<%= produto.descricaoProduto %>" disabled>
+                                                                <div class="row rowAlt">
+                                                                    <div class="col">
+                                                                        <label for="descricaoProduto">Descrição:</label>
+                                                                        <input type="text" name="descricaoProduto" value="<%= produto.descricaoProduto %>" disabled>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <label for="categoriaProd">Categoria:</label>
+                                                                        <select name="categoriaProd" id="categoriaProd" disabled>
+                                                                            <option value="1" <%= produto.categoriaProd == 1 ? 'selected' : '' %>>Material de Escritório</option>
+                                                                            <option value="2" <%= produto.categoriaProd == 2 ? 'selected' : '' %>>Material de Escolar</option>
+                                                                            <option value="3" <%= produto.categoriaProd == 3 ? 'selected' : '' %>>Material Didático</option>
+                                                                            <option value="4" <%= produto.categoriaProd == 4 ? 'selected' : '' %>>Material de Arte</option>
+                                                                            <option value="5" <%= produto.categoriaProd == 5 ? 'selected' : '' %>>Equipamentos de Tecnologia</option>
+                                                                            <option value="6" <%= produto.categoriaProd == 6 ? 'selected' : '' %>>Material de Limpeza</option>
+                                                                            <option value="7" <%= produto.categoriaProd == 7 ? 'selected' : '' %>>Equipamentos de Segurança</option>
+                                                                            <option value="8" <%= produto.categoriaProd == 8 ? 'selected' : '' %>>Móveis e Equipamentos</option>
+                                                                            <option value="9" <%= produto.categoriaProd == 9 ? 'selected' : '' %>>Material de Educação Física</option>
+                                                                            <option value="10" <%= produto.categoriaProd == 10 ? 'selected' : '' %>>Material de Música</option>
+                                                                            <option value="11" <%= produto.categoriaProd == 11 ? 'selected' : '' %>>Material de Ciências</option>
+                                                                            <option value="12" <%= produto.categoriaProd == 12 ? 'selected' : '' %>>Suprimentos de Refeição</option>
+                                                                            <option value="13" <%= produto.categoriaProd == 13 ? 'selected' : '' %>>Material de Jardinagem</option>
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -282,7 +302,8 @@
                 // ---------- CRIAÇÃO DE NOVOS CARDS COM ORGANIZAÇÃO CONFORME DISPONIBILIDADE ---------- //
                 document.getElementById('moreCards').addEventListener('click', function() {
                     var newCard = document.createElement('div');
-                    newCard.className = 'cardItemAlmoxarifado';
+                    let classNum = document.querySelectorAll('.cardItemAlmoxarifado').length + 1;
+                    newCard.className = `cardItemAlmoxarifado card${classNum}`;
                     newCard.innerHTML = `
                         <div class="imgItem">
                             <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
@@ -301,6 +322,7 @@
                                                             data-id="<%= produto.idProduto %>"
                                                             data-nome="<%= produto.nomeProduto %>"
                                                             data-desc="<%= produto.descricaoProduto %>"
+                                                            data-cat="<%= produto.categoriaProd %>"
                                                             data-cor="<%= produto.corProduto %>"
                                                             data-qtd="<%= produto.qtdEstoque %>">
                                                             <%= produto.codBarraProd %>
@@ -315,6 +337,9 @@
                                     <label for="nomeItemNew">Item:</label>
                                     <input type="text" class="nomeItem" name="nomeItemNew">
                                 </div>
+                                <div class="col">
+                                    <i class="fas fa-minus-circle lessCard"></i>
+                                </div>
                             </div>
                             <div class="row rowAlt">
                                 <div class="col">
@@ -326,9 +351,30 @@
                                     <input type="number" class="qtdItem" name="qtdItemNew" min="0">
                                 </div>
                             </div>
-                            <div class="row">
-                                <label for="descrProdNew">Validade:</label>
+                            <div class="row rowAlt">
+                                <div class="col">
+                                    <label for="descrProdNew">Descrição:</label>
                                 <input type="text" class="descrProd" name="descrProdNew">
+                                </div>
+                                <div class="col">
+                                    <label for="catProdNew">Categoria:</label>
+                                    <select name="catProdNew" class="catProd">
+                                        <option value="0">CATEGORIA</option>
+                                        <option value="1">Material de Escritório</option>
+                                        <option value="2">Material de Escolar</option>
+                                        <option value="3">Material Didático</option>
+                                        <option value="4">Material de Arte</option>
+                                        <option value="5">Equipamentos de Tecnologia</option>
+                                        <option value="6">Material de Limpeza</option>
+                                        <option value="7">Equipamentos de Segurança</option>
+                                        <option value="8">Móveis e Equipamentos</option>
+                                        <option value="9">Material de Educação Física</option>
+                                        <option value="10">Material de Música</option>
+                                        <option value="11">Material de Ciências</option>
+                                        <option value="12">Suprimentos de Refeição</option>
+                                        <option value="13">Material de Jardinagem</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="row rowAlt">
                                 <div class="col">
@@ -344,6 +390,9 @@
                     `;
                     document.querySelector('.newCard').appendChild(newCard);
                     attachEventListeners(newCard);
+                    newCard.querySelector('.lessCard').addEventListener('click', function() {
+                        newCard.remove();
+                    });
                 });
 
                 function attachEventListeners(card) {
@@ -356,11 +405,13 @@
                         var corProduto = selectedOption.getAttribute('data-cor');
                         var qtdEstoque = selectedOption.getAttribute('data-qtd');
                         var descProd = selectedOption.getAttribute('data-desc');
+                        var catProd = selectedOption.getAttribute('data-cat');
                         var produtoId = selectedOption.getAttribute('data-id');
 
                         card.querySelector('.nomeItem').value = nomeProduto;
                         card.querySelector('.corItem').value = corProduto;
                         card.querySelector('.descrProd').value = descProd;
+                        card.querySelector('.catProd').value = catProd;
                         qtdItemInput.value = qtdEstoque;
                         qtdItemInput.setAttribute('data-id', produtoId);
                         qtdItemInput.setAttribute('data-original-qtd', qtdEstoque);

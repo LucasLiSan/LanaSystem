@@ -99,6 +99,7 @@ router.post('/almoxarifado/edit', async (req,res) => {
         descrProdNew,
         corItemNew,
         qtdItemNew,
+        catProdNew,
         armarioDest,
         prateleiraDest
     } = req.body;
@@ -113,7 +114,7 @@ router.post('/almoxarifado/edit', async (req,res) => {
                     descricaoProduto : descrProdNew[i],
                     corProduto: corItemNew[i],
                     qtdEstoque: qtdItemNew[i],
-                    categoriaProd: '1', // Ajuste conforme necessário
+                    categoriaProd: catProdNew[i],
                     codBarraProd: codBarraProdNew[i]
                 });
 
@@ -134,7 +135,7 @@ router.post('/almoxarifado/edit', async (req,res) => {
                 descricaoProduto : descrProdNew,
                 corProduto: corItemNew,
                 qtdEstoque: qtdItemNew,
-                categoriaProd: '1', // Ajuste conforme necessário
+                categoriaProd: catProdNew,
                 codBarraProd: codBarraProdNew
             });
 
