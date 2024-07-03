@@ -211,54 +211,6 @@
                                 </h3>
                                 <div class="prateleiras" tabindex="0">
                                     <h3>ORGANIZANDO</h3>
-                                    <div class="cardItemAlmoxarifado">
-                                        <div class="imgItem">
-                                            <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
-                                        </div>
-                                        <div class="infosItem">
-                                            <div class="row rowAlt">
-                                                <div class="col">
-                                                    <label for="codBarraProd">Cód. Barra</label>
-                                                    <select id="codBarraProdSelect" name="codBarraProd">
-                                                        <option value="">SELECIONE</option>
-                                                        <% for (let armario in produtosOrganizados) { %>
-                                                            <% if (armario == 0) { %>
-                                                                <% for (let prateleira in produtosOrganizados[armario]) { %>
-                                                                    <% produtosOrganizados[armario][prateleira].forEach(produto => { %>
-                                                                        <option value="<%= produto.codBarraProd %>"
-                                                                            data-id="<%= produto.idProduto %>"
-                                                                            data-nome="<%= produto.nomeProduto %>"
-                                                                            data-cor="<%= produto.corProduto %>"
-                                                                            data-qtd="<%= produto.qtdEstoque %>">
-                                                                        <%= produto.codBarraProd %>
-                                                                        </option>
-                                                                    <% }); %>
-                                                                <% } %>
-                                                            <% } %>
-                                                        <% } %>
-                                                    </select>
-                                                </div>
-                                                <div class="col">
-                                                    <label for="nomeItem">Item:</label>
-                                                    <input type="text" id="nomeItem" name="nomeItem">
-                                                </div>
-                                            </div>
-                                            <div class="row rowAlt">
-                                                <div class="col">
-                                                    <label for="corItem">Cor:</label>
-                                                    <input type="text" id="corItem" name="corItem">
-                                                </div>
-                                                <div class="col">
-                                                    <label for="qtdItem">Quantidade:</label>
-                                                    <input type="number" id="qtdItem" name="qtdItem" min="0">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <label for="validItem">Validade:</label>
-                                                <input type="text" id="validItem" name="validItem">
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="newCard"></div>
                                 </div>
                             </div>
@@ -324,10 +276,96 @@
                 });
                 // ---------- MOSTRAR ESCONDER DIVS ---------- //
 
-                // Função para adicionar eventos aos novos cards
-                function attachEventListenersToNewCard(card) {
-                    // Evento Change para carregar informações
-                    card.querySelector('.codBarraProdSelect').addEventListener('change', function() {
+                /*document.getElementById('codBarraProdSelect').addEventListener('change', function() {
+                    var selectedOption = this.options[this.selectedIndex];
+                    var nomeProduto = selectedOption.getAttribute('data-nome');
+                    var corProduto = selectedOption.getAttribute('data-cor');
+                    var qtdEstoque = selectedOption.getAttribute('data-qtd');
+                    var produtoId = selectedOption.getAttribute('data-id');
+
+                    document.getElementById('nomeItem').value = nomeProduto;
+                    document.getElementById('corItem').value = corProduto;
+                    document.getElementById('qtdItem').value = qtdEstoque;
+                    document.getElementById('qtdItem').setAttribute('data-id', produtoId);  // Store the id for later use
+                    document.getElementById('qtdItem').setAttribute('data-original-qtd', qtdEstoque); // Store the original quantity for validation
+                });
+
+                document.getElementById('qtdItem').addEventListener('input', function() {
+                    var quantidadeOrganizar = parseInt(this.value);
+                    var produtoId = this.getAttribute('data-id');
+                    var qtdDesorganizadoElement = document.getElementById('qtdItemDesorganizado' + produtoId);
+                    var qtdDesorganizado = parseInt(qtdDesorganizadoElement.value);
+                    var originalQtd = parseInt(this.getAttribute('data-original-qtd'));
+
+                    if (!isNaN(quantidadeOrganizar) && quantidadeOrganizar <= originalQtd) {
+                        qtdDesorganizadoElement.value = originalQtd - quantidadeOrganizar;
+                    } else {
+                        alert('A quantidade para organizar não pode ser maior que a quantidade disponível.');
+                        this.value = originalQtd;
+                        qtdDesorganizadoElement.value = 0;
+                    }
+                });*/
+                document.getElementById('moreCards').addEventListener('click', function() {
+                    var newCard = document.createElement('div');
+                    newCard.className = 'cardItemAlmoxarifado';
+
+                    newCard.innerHTML = `
+                        <div class="imgItem">
+                            <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
+                        </div>
+                        <div class="infosItem">
+                            <div class="row rowAlt">
+                                <div class="col">
+                                    <label for="codBarraProd">Cód. Barra</label>
+                                    <select class="codBarraProdSelect" name="codBarraProd">
+                                        <option value="">SELECIONE</option>
+                                        <% for (let armario in produtosOrganizados) { %>
+                                            <% if (armario == 0) { %>
+                                                <% for (let prateleira in produtosOrganizados[armario]) { %>
+                                                    <% produtosOrganizados[armario][prateleira].forEach(produto => { %>
+                                                        <option value="<%= produto.codBarraProd %>"
+                                                            data-id="<%= produto.idProduto %>"
+                                                            data-nome="<%= produto.nomeProduto %>"
+                                                            data-cor="<%= produto.corProduto %>"
+                                                            data-qtd="<%= produto.qtdEstoque %>">
+                                                            <%= produto.codBarraProd %>
+                                                        </option>
+                                                    <% }); %>
+                                                <% } %>
+                                            <% } %>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="nomeItem">Item:</label>
+                                    <input type="text" class="nomeItem" name="nomeItem" disabled>
+                                </div>
+                            </div>
+                            <div class="row rowAlt">
+                                <div class="col">
+                                    <label for="corItem">Cor:</label>
+                                    <input type="text" class="corItem" name="corItem" disabled>
+                                </div>
+                                <div class="col">
+                                    <label for="qtdItem">Quantidade:</label>
+                                    <input type="number" class="qtdItem" name="qtdItem" min="0">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="validItem">Validade:</label>
+                                <input type="text" class="validItem" name="validItem" disabled>
+                            </div>
+                        </div>
+                    `;
+                    document.querySelector('.newCard').appendChild(newCard);
+                    attachEventListeners(newCard);
+                });
+
+                function attachEventListeners(card) {
+                    var codBarraSelect = card.querySelector('.codBarraProdSelect');
+                    var qtdItemInput = card.querySelector('.qtdItem');
+
+                    codBarraSelect.addEventListener('change', function() {
                         var selectedOption = this.options[this.selectedIndex];
                         var nomeProduto = selectedOption.getAttribute('data-nome');
                         var corProduto = selectedOption.getAttribute('data-cor');
@@ -336,88 +374,31 @@
 
                         card.querySelector('.nomeItem').value = nomeProduto;
                         card.querySelector('.corItem').value = corProduto;
-                        card.querySelector('.qtdItem').value = qtdEstoque;
-                        card.querySelector('.qtdItem').setAttribute('data-id', produtoId);  // Store the id for later use
-                        card.querySelector('.qtdItem').setAttribute('data-original-qtd', qtdEstoque); // Store the original quantity for validation
+                        qtdItemInput.value = qtdEstoque;
+                        qtdItemInput.setAttribute('data-id', produtoId);
+                        qtdItemInput.setAttribute('data-original-qtd', qtdEstoque);
                     });
 
-                    // Evento Input para fazer a troca de dados
-                    card.querySelector('.qtdItem').addEventListener('input', function() {
+                    qtdItemInput.addEventListener('input', function() {
                         var quantidadeOrganizar = parseInt(this.value);
                         var produtoId = this.getAttribute('data-id');
-                        var qtdDesorganizadoElement = card.querySelector('#qtdItemDesorganizado' + produtoId);
+                        var qtdDesorganizadoElement = document.getElementById('qtdItemDesorganizado' + produtoId);
                         var qtdDesorganizado = parseInt(qtdDesorganizadoElement.value);
                         var originalQtd = parseInt(this.getAttribute('data-original-qtd'));
 
-                        if (!isNaN(quantidadeOrganizar) && quantidadeOrganizar <= originalQtd) {
-                            qtdDesorganizadoElement.value = originalQtd - quantidadeOrganizar;
-                        } else {
-                            alert('A quantidade para organizar não pode ser maior que a quantidade disponível.');
-                            this.value = originalQtd;
+                        var totalDistribuido = 0;
+                        document.querySelectorAll('.qtdItem[data-id="' + produtoId + '"]').forEach(function(input) { totalDistribuido += parseInt(input.value) || 0; });
+
+                        if (totalDistribuido <= originalQtd) { qtdDesorganizadoElement.value = originalQtd - totalDistribuido; }
+                        else {
+                            alert('A quantidade total distribuída não pode ser maior que a quantidade disponível.');
+                            this.value = originalQtd - (totalDistribuido - quantidadeOrganizar);
                             qtdDesorganizadoElement.value = 0;
                         }
                     });
                 }
-
-                // Evento para adicionar novos cards
-                document.getElementById('moreCards').addEventListener('click', function() {
-                    const newCardHTML = `
-                        <div class="cardItemAlmoxarifado">
-                            <div class="imgItem">
-                                <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
-                            </div>
-                            <div class="infosItem">
-                                <div class="row rowAlt">
-                                    <div class="col">
-                                        <label for="codBarraProd">Cód. Barra</label>
-                                        <select name="codBarraProd" class="codBarraProdSelect">
-                                            <option value="">SELECIONE</option>
-                                            <% for (let armario in produtosOrganizados) { %>
-                                                <% if (armario == 0) { %>
-                                                    <% for (let prateleira in produtosOrganizados[armario]) { %>
-                                                        <% produtosOrganizados[armario][prateleira].forEach(produto => { %>
-                                                            <option value="<%= produto.codBarraProd %>"
-                                                                data-id="<%= produto.idProduto %>"
-                                                                data-nome="<%= produto.nomeProduto %>"
-                                                                data-cor="<%= produto.corProduto %>"
-                                                                data-qtd="<%= produto.qtdEstoque %>">
-                                                            <%= produto.codBarraProd %>
-                                                            </option>
-                                                        <% }); %>
-                                                    <% } %>
-                                                <% } %>
-                                            <% } %>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <label for="nomeItem">Item:</label>
-                                        <input type="text" name="nomeItem" class="nomeItem">
-                                    </div>
-                                </div>
-                                <div class="row rowAlt">
-                                    <div class="col">
-                                        <label for="corItem">Cor:</label>
-                                        <input type="text" name="corItem" class="corItem">
-                                    </div>
-                                    <div class="col">
-                                        <label for="qtdItem">Quantidade:</label>
-                                        <input type="number" name="qtdItem" class="qtdItem" min="0" data-id="" data-original-qtd="">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label for="validItem">Validade:</label>
-                                    <input type="text" name="validItem" class="validItem">
-                                </div>
-                            </div>
-                        </div>
-                    `;
-
-                    const newCardContainer = document.querySelector('.newCard');
-                    newCardContainer.insertAdjacentHTML('beforeend', newCardHTML);
-
-                    // Após adicionar o novo card, atribui os eventos a ele
-                    attachEventListenersToNewCard(newCardContainer.lastElementChild);
-                });
+                // Attach initial event listeners
+                document.querySelectorAll('.cardItemAlmoxarifado').forEach(attachEventListeners);
             </script>
 
 <%- include ('partials/footer.ejs') %>
