@@ -52,37 +52,45 @@ router.get('/almoxarifado', async function(req, res) {
 /* ----------\/ ROTA ADIÇÃO NO DB ALMOXARIFADO (ALMOXARIFADO->CADASTRO) \/---------- */
 router.post('/almoxarifado/add', async (req,res) => {
     console.log(req.body);
-    const {
-        nomeProduto,
-        descricaoProduto,
-        corProduto,
-        qtdEstoque,
-        categoriaProd,
-        codBarraProd,
-        armarioaAlmoxarifado,
-        prateleiraAlmoxarifado
-    } = req.body;
+    const dadosFormulario = req.body;
+
     try {
-        // Cria um novo produto no almoxarifado
-        const novoProduto = await Almoxarifado.create({
-            nomeProduto : nomeProduto,
-            descricaoProduto : descricaoProduto,
-            corProduto : corProduto,
-            qtdEstoque : qtdEstoque,
-            categoriaProd : categoriaProd,
-            codBarraProd : codBarraProd
-        });
+        const produtos = Object.keys(dadosFormulario.codBarraProd).map(index => ({
+            codBarraProd: dadosFormulario.codBarraProd[index],
+            nomeProduto: dadosFormulario.nomeProduto[index],
+            descricaoProduto: dadosFormulario.descricaoProduto[index],
+            corProduto: dadosFormulario.corProduto[index],
+            qtdEstoque: dadosFormulario.qtdEstoque[index],
+            categoriaProd: dadosFormulario.categoriaProd[index],
+            armarioaAlmoxarifado: dadosFormulario.armarioaAlmoxarifado[index],
+            prateleiraAlmoxarifado: dadosFormulario.prateleiraAlmoxarifado[index]
+        }));
 
-        // Cria uma nova localização para o produto
-        await Localizacao.create({
-            armario: armarioaAlmoxarifado,
-            prateleira: prateleiraAlmoxarifado,
-            idProdutoGuardado: novoProduto.idProduto,
-            qtdPrdoGuardado: qtdEstoque,
-            localArmario: 'ALMOXARIFADO'
-        });
+        const novosProdutos = await Promise.all(produtos.map(async (produto) => {
+            // Cria um novo produto no almoxarifado
+            const novoProduto = await Almoxarifado.create({
+                nomeProduto: produto.nomeProduto,
+                descricaoProduto: produto.descricaoProduto,
+                corProduto: produto.corProduto,
+                qtdEstoque: produto.qtdEstoque,
+                categoriaProd: produto.categoriaProd,
+                codBarraProd: produto.codBarraProd
+            });
 
-        res.redirect("/almoxarifado")
+            // Cria uma nova localização para o produto
+            await Localizacao.create({
+                armario: produto.armarioaAlmoxarifado,
+                prateleira: produto.prateleiraAlmoxarifado,
+                idProdutoGuardado: novoProduto.idProduto,
+                qtdPrdoGuardado: produto.qtdEstoque,
+                localArmario: 'ALMOXARIFADO'
+            });
+
+            return novoProduto;
+        }));
+
+        console.log("Produtos cadastrados:", novosProdutos);
+        res.redirect("/almoxarifado");
     } catch (error) {
         console.error(error);
         res.status(500).send("Erro ao cadastrar produto.");

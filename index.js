@@ -49,7 +49,7 @@ const port = 8080;
 const myServer = ip.address();
 //console.log(myServer);
 
-app.listen(port, function(erro){
+app.listen(port, myServer, function(erro){
     if(erro){ console.log("Ocorreu um erro!"); }
     else { console.log(`Servidor iniciado com sucesso!`); }
 });
