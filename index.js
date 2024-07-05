@@ -47,9 +47,9 @@ app.use("/", patrimonioController);
 /* ----------\/ INICIANDO SERVIDOR \/---------- */
 const port = 8080;
 const myServer = ip.address();
-//console.log(myServer);
+console.log(myServer);
 
-app.listen(port, myServer, function(erro){
+app.listen(port, function(erro){
     if(erro){ console.log("Ocorreu um erro!"); }
     else { console.log(`Servidor iniciado com sucesso!`); }
 });

@@ -59,6 +59,9 @@
                             <span>QUANTIDADE: </span>
                             <span>CATEGORIA: </span>
                             <span>CÓD. BARRAS: </span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="gridBody">
                             <% produtos.forEach(produto => { %>
@@ -70,8 +73,36 @@
                                     <span><%= produto.qtdEstoque %></span>
                                     <span><%= produto.categoria.categoria %></span>
                                     <span><%= produto.codBarraProd %></span>
+                                    <span><a class="myModalBtn" data-id="<%= produto.idProduto %>"><i class="fas fa-eye"></i></a></span>
+                                    <span><a href="<%= produto.idProduto %>"><i class="fas fa-pencil-alt"></i></a></span>
+                                    <span><a href="<%= produto.idProduto %>"><i class="fas fa-eraser"></i></i></a></span>
                                 </div>
                             <% }); %>
+                        </div>
+                    </div>
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span class="close">&times;</span>
+                                <h2>Modal Header</h2>
+                            </div>
+                            <div class="modal-body">
+                                <p>ID: <span id="modalId"></span></p>
+                                <p>Produto: <span id="modalProduto"></span></p>
+                                <p>Descrição: <span id="modalDescricao"></span></p>
+                                <p>Cor: <span id="modalCor"></span></p>
+                                <p>Quantidade: <span id="modalQuantidade"></span></p>
+                                <p>Categoria: <span id="modalCategoria"></span></p>
+                                <p>Código de Barras: <span id="modalCodBarras"></span></p>
+                                <p>Local: <span id="modalLocalArmario"></span></p>
+                                <p>Armario: <span id="modalArmario"></span></p>
+                                <p>Prateleira: <span id="modalPrateleira"></span></p>
+                            </div>
+                            <div class="modal-footer">
+                                <h3>Modal Footer</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
