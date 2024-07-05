@@ -16,6 +16,7 @@
                 let formNum = document.querySelectorAll('.marginForm').length + 1;
                 newForm.className = `marginForm form${formNum}`;
                 newForm.innerHTML = `
+                    <i class="fas fa-minus-circle lessResponsive"></i>
                     <div class="rowForm firstRow">
                         <div class="colForm">
                             <label for="codBarraProd">Código de barras:</label>
@@ -24,6 +25,9 @@
                         <div class="colForm">
                             <label for="nomeProduto">Item:</label>
                             <input type="text" name="nomeProduto" required>
+                        </div>
+                        <div class="colForm">
+                            <i class="fas fa-minus-circle lessForm"></i>
                         </div>
                     </div>
                     <div class="rowForm">
@@ -90,8 +94,12 @@
                     </div>
                 `;
                 document.querySelector('.newForm').appendChild(newForm);
-                attachEventListeners(newForm);
+                
+                // Adiciona o evento de clique ao ícone de remoção
                 newForm.querySelector('.lessForm').addEventListener('click', function() {
+                    newForm.remove();
+                });
+                newForm.querySelector('.lessResponsive').addEventListener('click', function() {
                     newForm.remove();
                 });
             });
