@@ -86,7 +86,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <span class="close">&times;</span>
-                                <h2>Modal Header</h2>
+                                <h2>INFORMAÇÕES DETALHADAS: <span id="modalProdutoTitle"></span></h2>
                             </div>
                             <div class="modal-body">
                                 <p>ID: <span id="modalId"></span></p>
@@ -101,9 +101,13 @@
                                 <p>Prateleira: <span id="modalPrateleira"></span></p>
                             </div>
                             <div class="modal-footer">
-                                <h3>Modal Footer</h3>
+                                <span>- Sistema de gerenciamento da EMEB PINGO DE GENTE -</span>
                             </div>
                         </div>
+                    </div>
+                    <!-- Elemento oculto para armazenar o JSON -->
+                    <div id="produtosData" style="display: none;">
+                        <%- JSON.stringify(produtos) %>
                     </div>
                 </div>
                 <div class="entradasAlmoxarifado">
