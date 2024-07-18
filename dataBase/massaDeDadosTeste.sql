@@ -55,3 +55,6 @@ INSERT INTO localizacaos (armario, prateleira, idProdutoGuardado, qtdPrdoGuardad
 (1,3,27,1,'ALMOXARIFADO');
 
 select * from localizacaos;
+
+INSERT INTO estoquelimpezas (nomeProduto, descricaoProduto, corProduto, qtdEstoque, categoriaProd, codBarraProd, marcaProd, validadeProd, tipoProd) VALUES
+('ALCOOL','ALCOOL BACTERICIDA 70','TRANSPARENTE',15,2,'7898255676773','AUDAX FACILITA','00-00-0000','PESO/KG');
