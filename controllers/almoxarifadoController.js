@@ -32,8 +32,8 @@ router.get('/almoxarifado', async function(req, res) {
     });
     const produtosOrganizados = {};
     produtos.forEach(produto => {
-        const armario = produto.localizacao.armario;
-        const prateleira = produto.localizacao.prateleira;
+        const armario = produto.localizacao?.armario;
+        const prateleira = produto.localizacao?.prateleira;
 
         if (!produtosOrganizados[armario]) { produtosOrganizados[armario] = {}; }
 

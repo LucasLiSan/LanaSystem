@@ -19,20 +19,31 @@ const router = express.Router();
 function formatDate(dateString) {
     if (dateString === '0000-00-00 00:00:00') { return 'INDETERMINADA'; }
 
-    const months = [
+    const months = 
+    [ 
         "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
         "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
     ];
 
     const date = new Date(dateString);
+    const now = new Date();
 
     if (isNaN(date.getTime())) { return 'INDETERMINADO'; }
 
     const day = date.getDate();
     const month = months[date.getMonth()];
     const year = date.getFullYear();
-    
-    return `${day} ${month} ${year}`;
+
+    const oneWeekInMillis = 7 * 24 * 60 * 60 * 1000;
+    const endOfCurrentMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+
+    let message = '';
+
+    if (date < now) { message = ' (VENCIDO)'; }
+    else if (date - now <= oneWeekInMillis) { message = ' (VENCE EM MENOS DE UMA SEMANA)'; }
+    else if (date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear()) { message = ' (VENCE EM MENOS DE UM MÊS)'; }
+
+    return `${day} ${month} ${year}${message}`;
 }
 
 /* ----------\/ ROTA PRINCIPAL VIEW ESTOQUE DA LIMPEZA (LISTAS GERAIS E POR ARMARIOS) \/---------- */

@@ -11,26 +11,32 @@
 nav a:hover, footer a:hover,
 .title:hover, .btnAtender input:hover,
 .colInfosIndex > .verMais:hover, .gridBodyRow:hover,
-.formInterno > .btnFormEntradasAlmoxarifado:hover { background: var(--colorTwo); }
+.formInterno > .btnFormEntradasAlmoxarifado:hover,
+.formInterno > .btnFormEstoqueLimpeza:hover { background: var(--colorTwo); }
 
 nav a:hover > .dropdown { display: block;}
 
 nav a:active, footer a:active,
 .title:active, .btnAtender input:active,
-.colInfosIndex > .verMais:active, .formInterno > .btnFormEntradasAlmoxarifado:active { background: var(--colorThree); }
+.colInfosIndex > .verMais:active, .formInterno > .btnFormEntradasAlmoxarifado:active,
+.formInterno > .btnFormEstoqueLimpeza:active { background: var(--colorThree); }
 
 i#columnsIcon:active, i#listIcon:active,
 i#entradasAlmoxarifdo:active, i#saidasAlmoxarifdo:active,
 i#internoAlmoxarifdo:active, .entradasAlmoxarifado h4 > i:active,
-.colForm > i:active { color: var(--colorFour); }
+.colForm > i:active, i#entradasEstoqueLimpeza:active,
+i#saidasEstoqueLimpeza:active, i#internoEstoqueLimpeza:active,
+.entradasEstoqueLimpeza h4 > i:active { color: var(--colorFour); }
 
 .almoxarifadoInfos:focus, .eCozinhaInfos:focus,
 .eLimpezaInfos:focus, .patrimonioInfos:focus,
-.armarios:focus, .formEntradasAlmoxarifado:focus { box-shadow: 0px 0px 20px 5px var(--colorOne); }
+.armarios:focus, .formEntradasAlmoxarifado:focus,
+.formEntradasEstoqueLimpeza:focus { box-shadow: 0px 0px 20px 5px var(--colorOne); }
 
 .almoxarifadoInfos:focus > .title, .eCozinhaInfos:focus > .title,
 .eLimpezaInfos:focus > .title, .patrimonioInfos:focus > .title,
-.armarios:focus > h3, .formEntradasAlmoxarifado:focus > h4 { border-left: 3px solid var(--colorOne); }
+.armarios:focus > h3, .formEntradasAlmoxarifado:focus > h4,
+.formEntradasEstoqueLimpeza:focus > h4 { border-left: 3px solid var(--colorOne); }
 
 .armarios.focused { box-shadow: 0px 0px 20px 5px var(--colorOne); }
 
@@ -348,9 +354,9 @@ main {
 }
 
 /* ----------/\ INDEX.EJS /\---------- */
-/* ----------\/ ALMOXARIFADO.EJS \/---------- */
+/* ----------\/ ALMOXARIFADO.EJS / eLIMPEZA.EJS \/---------- */
 
-.mainAlmoxarifado {
+.mainAlmoxarifado, .mainEstoqueLimpeza {
     position: relative;
     width: 100%;
     height: 100%;
@@ -362,7 +368,7 @@ main {
     z-index: 8;
 }
 
-.mainAlmoxarifado h1 {
+.mainAlmoxarifado h1, .mainEstoqueLimpeza h1 {
     width: 100%;
     height: 5rem;
     margin-left: 1rem;
@@ -374,7 +380,7 @@ main {
     text-shadow: 3px 1px 5px black;
 }
 
-.mainAlmoxarifado h1 > i {
+.mainAlmoxarifado h1 > i, .mainEstoqueLimpeza h1 > i {
     height: 60%;
     font-size: 2.7rem;
     margin-left: 1rem;
@@ -382,7 +388,7 @@ main {
 
 /* -----\/ VIZUALIZAÇÃO RÁPIDA \/----- */
 
-.containerAlmoxarifado {
+.containerAlmoxarifado, .containerEstoqueLimpeza {
     width: 100%;
     height: 90%;
     padding: 0.3rem;
@@ -437,7 +443,7 @@ main {
     text-shadow: 3px 1px 5px black;
 }
 
-.cardItemAlmoxarifado {
+.cardItemAlmoxarifado, .cardItemEstoqueLimpeza {
     width: 100%;
     height: 12rem;
     margin-bottom: 1rem;
@@ -526,7 +532,7 @@ main {
 /* -----/\ VIZUALIZAÇÃO RÁPIDA /\----- */
 /* -----\/ VIZUALIZAÇÃO LISTA GERAL \/----- */
 
-.listaGeralAlmoxarifado {
+.listaGeralAlmoxarifado, .listaGeralEstoqueLimpeza {
     width: 100%;
     height: 90%;
     padding: 1rem 0 0 0;
@@ -685,7 +691,7 @@ main {
 /* -----/\ VIZUALIZAÇÃO LISTA GERAL /\----- */
 /* -----\/ TELA CADASTRO (ENTRADAS) \/----- */
 
-.entradasAlmoxarifado {
+.entradasAlmoxarifado, .entradasEstoqueLimpeza {
     width: 100%;
     height: 90%;
     margin: 1rem 0 0 0;
@@ -697,7 +703,7 @@ main {
     overflow: auto;
 }
 
-.entradasAlmoxarifado > h4 {
+.entradasAlmoxarifado > h4, .entradasEstoqueLimpeza > h4 {
     width: 100%;
     height: 4rem;
     margin: 0.3rem 0 0 1rem;
@@ -710,14 +716,14 @@ main {
     text-shadow: 3px 1px 5px black;
 }
 
-.entradasAlmoxarifado h4 > i {
+.entradasAlmoxarifado h4 > i, .entradasEstoqueLimpeza h4 > i {
     width: 3rem;
     height: 2.3rem;
     margin-left: 0.3rem;
     font-size: 2rem;
 }
 
-.formEntradasAlmoxarifado {
+.formEntradasAlmoxarifado, .formEntradasEstoqueLimpeza {
     width: 90%;
     height: 85%;
     padding: 1rem;
@@ -793,7 +799,8 @@ main {
 
 .lessResponsive { display: none;}
 
-.formEntradasAlmoxarifado > .btnFormEntradasAlmoxarifado {
+.formEntradasAlmoxarifado > .btnFormEntradasAlmoxarifado,
+.formEntradasEstoqueLimpeza > .btnFormEntradasEstoqueLimpeza {
     width: 30%;
     height: 2.3rem;
     align-content: center;
@@ -808,7 +815,7 @@ main {
 /* -----/\ TELA CADASTRO (ENTRADAS) /\----- */
 /* -----\/ TELA EDIÇÃO/CADASTRO INTERNO (UPDATES) \/----- */
 
-.internoAlmoxarifdo {
+.internoAlmoxarifdo, .internoEstoqueLimpeza {
     width: 100%;
     height: 100%;
     margin: 1rem 0 0 0;
@@ -819,7 +826,7 @@ main {
     overflow: auto;
 }
 
-.internoAlmoxarifdo > h4 {
+.internoAlmoxarifdo > h4, .internoEstoqueLimpeza > h4 {
     width: 100%;
     height: 4rem;
     margin: 0.3rem 0 0 1rem;
@@ -868,7 +875,7 @@ main {
     left: 31rem;
 }
 
-.formInterno > .btnFormEntradasAlmoxarifado {
+.formInterno > .btnFormEntradasAlmoxarifado, .formInterno > .btnFormEstoqueLimpeza {
     width: 20%;
     height: 6%;
     border-radius: 1rem;
@@ -878,7 +885,7 @@ main {
 /* -----/\ TELA EDIÇÃO/CADASTRO INTERNO (UPDATES) /\----- */
 /* -----\/ TELA ENVIOS (SAÍDAS) \/----- */
 
-.saidasAlmoxarifado {
+.saidasAlmoxarifado, .saidasEstoquesLimpeza {
     width: 100%;
     height: 100%;
     margin: 1rem 0 0 0;
@@ -892,7 +899,7 @@ main {
 
 /* -----/\ TELA ENVIOS (SAÍDAS) /\----- */
 
-/* ----------/\ ALMOXARIFADO.EJS /\---------- */
+/* ----------/\ ALMOXARIFADO.EJS / eLIMPEZA.EJS /\---------- */
 /* ----------\/ FOOTER.EJS \/---------- */
 
 footer {
@@ -1078,7 +1085,8 @@ footer span {
 
     .formEntradasAlmoxarifado { width: 80%;}
 
-    .internoAlmoxarifdo > h4 { font-size: 2rem; }
+    .internoAlmoxarifdo > h4,
+    .internoEstoqueLimpeza > h4 { font-size: 2rem; }
 }
 
 /* ----------/\ RESPONSIVIDADE /\---------- */

@@ -1,17 +1,17 @@
 <%- include ('partials/header.ejs') %>
 <%- include ('partials/nav.ejs') %>
 
-            <section class="mainAlmoxarifado">
+            <section class="mainEstoqueLimpeza">
                 <div class="title">
                     <h1>ESTOQUE DA LIMPEZA 
-                        <i class="fas fa-shipping-fast" id="entradasELimpeza"></i>
-                        <i class="fas fa-clipboard-list" id="internoELimpeza"></i>
-                        <i class="fas fa-dolly-flatbed" id="saidasELimpeza"></i>
+                        <i class="fas fa-shipping-fast" id="entradasEstoqueLimpeza"></i>
+                        <i class="fas fa-clipboard-list" id="internoEstoqueLimpeza"></i>
+                        <i class="fas fa-dolly-flatbed" id="saidasEstoqueLimpeza"></i>
                     </h1>
                     <i class="fas fa-columns" id="columnsIcon"></i>
                     <i class="far fa-list-alt" id="listIcon"></i>
                 </div>
-                <div class="containerAlmoxarifado">
+                <div class="containerEstoqueLimpeza">
                     <% for (let armarioLimpeza in prodsLimpezaOrganizados) { %>
                         <div class="armarios" id="armario<%= armarioLimpeza %>" tabindex="0">
                             <h3>ARMÁRIO <%= armarioLimpeza %></h3>
@@ -19,7 +19,7 @@
                                 <div class="prateleiras" id="A<%= armarioLimpeza %>P<%= prateleiraLimpeza %>" tabindex="0">
                                     <h3>PRATELEIRA <%= prateleiraLimpeza %></h3>
                                     <% prodsLimpezaOrganizados[armarioLimpeza][prateleiraLimpeza].forEach(prodLimpeza => { %>
-                                        <div class="cardItemAlmoxarifado">
+                                        <div class="cardItemEstoqueLimpeza">
                                             <div class="imgItem">
                                                 <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
                                             </div>
@@ -50,7 +50,7 @@
                         </div>
                     <% } %>
                 </div>
-                <div class="listaGeralAlmoxarifado">
+                <div class="listaGeralEstoqueLimpeza">
                     <div class="gridGeral">
                         <div class="gridHead">
                             <span>ID: </span>
@@ -111,16 +111,16 @@
                         <%- JSON.stringify(prodsLimpeza) %>
                     </div>
                 </div>
-                <div class="entradasAlmoxarifado">
+                <div class="entradasEstoqueLimpeza">
                     <h4>CADASTRO
-                        <i id="moreForms" class="fas fa-plus-circle"></i>
+                        <i id="moreFormsLimpeza" class="fas fa-plus-circle"></i>
                     </h4>
-                    <form class="formEntradasAlmoxarifado" action="/almoxarifado/add" method="POST" tabindex="0">
-                        <div class="newForm"></div>
-                        <input type="submit" class="btnFormEntradasAlmoxarifado" value="CADASTRAR">
+                    <form class="formEntradasEstoqueLimpeza" action="/eLimpeza/add" method="POST" tabindex="0">
+                        <div class="newFormLimpeza"></div>
+                        <input type="submit" class="btnFormEntradasEstoqueLimpeza" value="CADASTRAR">
                     </form>
                 </div>
-                <div class="internoAlmoxarifdo">
+                <div class="internoEstoqueLimpeza">
                     <h4>ORGANIZAÇÃO INTERNA</h4>
                     <form class="formInterno" action="/almoxarifado/edit" method="POST" tabindex="0">
                         <div class="bodyForm">
@@ -132,8 +132,8 @@
                                             <% for (let prateleiraLimpeza in prodsLimpezaOrganizados[armarioLimpeza]) { %>
                                                 <div class="prateleiras" id="A<%= armarioLimpeza %>P<%= prateleiraLimpeza %>" tabindex="0">
                                                     <h3>A organizar</h3>
-                                                    <% prodsLimpezaOrganizados[armarioLimpeza][prateleiraLimpeza].forEach(produto => { %>
-                                                        <div class="cardItemAlmoxarifado">
+                                                    <% prodsLimpezaOrganizados[armarioLimpeza][prateleiraLimpeza].forEach(prodLimpeza => { %>
+                                                        <div class="cardItemEstoqueLimpeza">
                                                             <div class="imgItem">
                                                                 <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
                                                             </div>
@@ -141,45 +141,39 @@
                                                                 <div class="row rowAlt">
                                                                     <div class="col">
                                                                         <label for="codBarraProd">Cód. Barra</label>
-                                                                        <input type="text" name="codBarraProd" value="<%= produto.codBarraProd %>" disabled>
+                                                                        <input type="text" name="codBarraProd" value="<%= prodLimpeza.codBarraProd %>" disabled>
                                                                     </div>
                                                                     <div class="col">
                                                                         <label for="nomeItem">Item:</label>
-                                                                        <input type="text" name="idProdutoDesorg" value="<%= produto.idProduto %>" hidden>
-                                                                        <input type="text" name="nomeItem" value="<%= produto.nomeProduto %>" disabled>
+                                                                        <input type="text" name="idProdutoDesorg" value="<%= prodLimpeza.idProduto %>" hidden>
+                                                                        <input type="text" name="nomeItem" value="<%= prodLimpeza.nomeProduto %>" disabled>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row rowAlt">
                                                                     <div class="col">
                                                                         <label for="corItem">Cor:</label>
-                                                                        <input type="text" name="corItem" value="<%= produto.corProduto %>" disabled>
+                                                                        <input type="text" name="corItem" value="<%= prodLimpeza.corProduto %>" disabled>
                                                                     </div>
                                                                     <div class="col">
                                                                         <label for="qtdItem">Quantidade:</label>
-                                                                        <input type="text" id="qtdItemDesorganizado<%= produto.idProduto %>" name="qtdItem" value="<%= produto.qtdEstoque %>" disabled>
+                                                                        <input type="text" id="qtdItemDesorganizado<%= prodLimpeza.idProduto %>" name="qtdItem" value="<%= prodLimpeza.qtdEstoque %>" disabled>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row rowAlt">
                                                                     <div class="col">
                                                                         <label for="descricaoProduto">Descrição:</label>
-                                                                        <input type="text" name="descricaoProduto" value="<%= produto.descricaoProduto %>" disabled>
+                                                                        <input type="text" name="descricaoProduto" value="<%= prodLimpeza.descricaoProduto %>" disabled>
                                                                     </div>
                                                                     <div class="col">
                                                                         <label for="categoriaProd">Categoria:</label>
                                                                         <select name="categoriaProd" id="categoriaProd" disabled>
-                                                                            <option value="1" <%= produto.categoriaProd == 1 ? 'selected' : '' %>>Material de Escritório</option>
-                                                                            <option value="2" <%= produto.categoriaProd == 2 ? 'selected' : '' %>>Material de Escolar</option>
-                                                                            <option value="3" <%= produto.categoriaProd == 3 ? 'selected' : '' %>>Material Didático</option>
-                                                                            <option value="4" <%= produto.categoriaProd == 4 ? 'selected' : '' %>>Material de Arte</option>
-                                                                            <option value="5" <%= produto.categoriaProd == 5 ? 'selected' : '' %>>Equipamentos de Tecnologia</option>
-                                                                            <option value="6" <%= produto.categoriaProd == 6 ? 'selected' : '' %>>Material de Limpeza</option>
-                                                                            <option value="7" <%= produto.categoriaProd == 7 ? 'selected' : '' %>>Equipamentos de Segurança</option>
-                                                                            <option value="8" <%= produto.categoriaProd == 8 ? 'selected' : '' %>>Móveis e Equipamentos</option>
-                                                                            <option value="9" <%= produto.categoriaProd == 9 ? 'selected' : '' %>>Material de Educação Física</option>
-                                                                            <option value="10" <%= produto.categoriaProd == 10 ? 'selected' : '' %>>Material de Música</option>
-                                                                            <option value="11" <%= produto.categoriaProd == 11 ? 'selected' : '' %>>Material de Ciências</option>
-                                                                            <option value="12" <%= produto.categoriaProd == 12 ? 'selected' : '' %>>Suprimentos de Refeição</option>
-                                                                            <option value="13" <%= produto.categoriaProd == 13 ? 'selected' : '' %>>Material de Jardinagem</option>
+                                                                            <option value="1" <%= prodLimpeza.categoriaProd == 1 ? 'selected' : '' %>>Material de Limpeza</option>
+                                                                            <option value="2" <%= prodLimpeza.categoriaProd == 2 ? 'selected' : '' %>>Produto de Limpeza</option>
+                                                                            <option value="3" <%= prodLimpeza.categoriaProd == 3 ? 'selected' : '' %>>EPI</option>
+                                                                            <option value="4" <%= prodLimpeza.categoriaProd == 4 ? 'selected' : '' %>>Produto de Higiêne</option>
+                                                                            <option value="5" <%= prodLimpeza.categoriaProd == 5 ? 'selected' : '' %>>Material de Construção</option>
+                                                                            <option value="6" <%= prodLimpeza.categoriaProd == 6 ? 'selected' : '' %>>Ferramentas</option>
+                                                                            <option value="7" <%= prodLimpeza.categoriaProd == 7 ? 'selected' : '' %>>Material de Jardinagem</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -204,10 +198,10 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" class="btnFormEntradasAlmoxarifado" value="CADASTRAR">
+                        <input type="submit" class="btnFormEntradasEstoqueLimpeza" value="CADASTRAR">
                     </form>
                 </div>
-                <div class="saidasAlmoxarifado"></div>
+                <div class="saidasEstoquesLimpeza"></div>
             </section>
             <script>
                 // ---------- EFEITO DE FOCUS ---------- //
@@ -226,51 +220,51 @@
 
                 // ---------- MOSTRAR ESCONDER DIVS ---------- //
                 document.getElementById('columnsIcon').addEventListener('click', function() {
-                    document.querySelector('.containerAlmoxarifado').style.display = 'flex';
-                    document.querySelector('.listaGeralAlmoxarifado').style.display = 'none';
-                    document.querySelector('.entradasAlmoxarifado').style.display = 'none';
-                    document.querySelector('.internoAlmoxarifdo').style.display = 'none';
-                    document.querySelector('.saidasAlmoxarifado').style.display = 'none';
+                    document.querySelector('.containerEstoqueLimpeza').style.display = 'flex';
+                    document.querySelector('.listaGeralEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.entradasEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.internoEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.saidasEstoquesLimpeza').style.display = 'none';
                 });
 
                 document.getElementById('listIcon').addEventListener('click', function() {
-                    document.querySelector('.containerAlmoxarifado').style.display = 'none';
-                    document.querySelector('.listaGeralAlmoxarifado').style.display = 'flex';
-                    document.querySelector('.entradasAlmoxarifado').style.display = 'none';
-                    document.querySelector('.internoAlmoxarifdo').style.display = 'none';
-                    document.querySelector('.saidasAlmoxarifado').style.display = 'none';
+                    document.querySelector('.containerEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.listaGeralEstoqueLimpeza').style.display = 'flex';
+                    document.querySelector('.entradasEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.internoEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.saidasEstoquesLimpeza').style.display = 'none';
                 });
 
-                document.getElementById('entradasAlmoxarifdo').addEventListener('click', function() {
-                    document.querySelector('.containerAlmoxarifado').style.display = 'none';
-                    document.querySelector('.listaGeralAlmoxarifado').style.display = 'none';
-                    document.querySelector('.entradasAlmoxarifado').style.display = 'flex';
-                    document.querySelector('.internoAlmoxarifdo').style.display = 'none';
-                    document.querySelector('.saidasAlmoxarifado').style.display = 'none';
+                document.getElementById('entradasEstoqueLimpeza').addEventListener('click', function() {
+                    document.querySelector('.containerEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.listaGeralEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.entradasEstoqueLimpeza').style.display = 'flex';
+                    document.querySelector('.internoEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.saidasEstoquesLimpeza').style.display = 'none';
                 });
 
-                document.getElementById('internoAlmoxarifdo').addEventListener('click', function() {
-                    document.querySelector('.containerAlmoxarifado').style.display = 'none';
-                    document.querySelector('.listaGeralAlmoxarifado').style.display = 'none';
-                    document.querySelector('.entradasAlmoxarifado').style.display = 'none';
-                    document.querySelector('.internoAlmoxarifdo').style.display = 'flex';
-                    document.querySelector('.saidasAlmoxarifado').style.display = 'none';
+                document.getElementById('internoEstoqueLimpeza').addEventListener('click', function() {
+                    document.querySelector('.containerEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.listaGeralEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.entradasEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.internoEstoqueLimpeza').style.display = 'flex';
+                    document.querySelector('.saidasEstoquesLimpeza').style.display = 'none';
                 });
 
-                document.getElementById('saidasAlmoxarifdo').addEventListener('click', function() {
-                    document.querySelector('.containerAlmoxarifado').style.display = 'none';
-                    document.querySelector('.listaGeralAlmoxarifado').style.display = 'none';
-                    document.querySelector('.entradasAlmoxarifado').style.display = 'none';
-                    document.querySelector('.internoAlmoxarifdo').style.display = 'none';
-                    document.querySelector('.saidasAlmoxarifado').style.display = 'flex';
+                document.getElementById('saidasEstoqueLimpeza').addEventListener('click', function() {
+                    document.querySelector('.containerEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.listaGeralEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.entradasEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.internoEstoqueLimpeza').style.display = 'none';
+                    document.querySelector('.saidasEstoquesLimpeza').style.display = 'flex';
                 });
                 // ---------- MOSTRAR ESCONDER DIVS ---------- //
 
                 // ---------- CRIAÇÃO DE NOVOS CARDS COM ORGANIZAÇÃO CONFORME DISPONIBILIDADE ---------- //
                 document.getElementById('moreCards').addEventListener('click', function() {
                     var newCard = document.createElement('div');
-                    let classNum = document.querySelectorAll('.cardItemAlmoxarifado').length + 1;
-                    newCard.className = `cardItemAlmoxarifado card${classNum}`;
+                    let classNum = document.querySelectorAll('.cardItemEstoqueLimpeza').length + 1;
+                    newCard.className = `cardItemEstoqueLimpeza card${classNum}`;
                     newCard.innerHTML = `
                         <div class="imgItem">
                             <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
@@ -327,19 +321,13 @@
                                     <label for="catProdNew">Categoria:</label>
                                     <select name="catProdNew" class="catProd">
                                         <option value="0">CATEGORIA</option>
-                                        <option value="1">Material de Escritório</option>
-                                        <option value="2">Material de Escolar</option>
-                                        <option value="3">Material Didático</option>
-                                        <option value="4">Material de Arte</option>
-                                        <option value="5">Equipamentos de Tecnologia</option>
-                                        <option value="6">Material de Limpeza</option>
-                                        <option value="7">Equipamentos de Segurança</option>
-                                        <option value="8">Móveis e Equipamentos</option>
-                                        <option value="9">Material de Educação Física</option>
-                                        <option value="10">Material de Música</option>
-                                        <option value="11">Material de Ciências</option>
-                                        <option value="12">Suprimentos de Refeição</option>
-                                        <option value="13">Material de Jardinagem</option>
+                                        <option value="1">Material de Limpeza</option>
+                                        <option value="2">Produto de Limpeza</option>
+                                        <option value="3">EPI</option>
+                                        <option value="4">Produto de Higiêne</option>
+                                        <option value="5">Material de Construção</option>
+                                        <option value="6">Ferramentas</option>
+                                        <option value="7">Material de Jardinagem</option>
                                     </select>
                                 </div>
                             </div>
@@ -402,7 +390,7 @@
                         }
                     });
                 }
-                document.querySelectorAll('.cardItemAlmoxarifado').forEach(attachEventListeners);
+                document.querySelectorAll('.cardItemEstoqueLimpeza').forEach(attachEventListeners);
                 // ---------- CRIAÇÃO DE NOVOS CARDS COM ORGANIZAÇÃO CONFORME DISPONIBILIDADE ---------- //
             </script>
 

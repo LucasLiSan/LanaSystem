@@ -10,7 +10,7 @@
             </footer>
         </body>
         <script>
-            // ---------- CRIAÇÃO DE NOVOS FORMS CADASTRO ---------- //
+            // ---------- CRIAÇÃO DE NOVOS FORMS CADASTRO ALMOXARIFADO ---------- //
             document.getElementById('moreForms').addEventListener('click', function() {
                 var newForm = document.createElement('div');
                 let formNum = document.querySelectorAll('.marginForm').length + 1;
@@ -76,6 +76,12 @@
                                 <option value="5">Armario 5</option>
                                 <option value="6">Armario 6</option>
                                 <option value="7">Armario 7</option>
+                                <option value="8">Armario 8</option>
+                                <option value="9">Armario 9</option>
+                                <option value="10">Armario 10</option>
+                                <option value="11">Armario 11</option>
+                                <option value="12">Armario 12</option>
+                                <option value="13">Armario 13</option>
                             </select>
                         </div>
                         <div class="colForm">
@@ -89,6 +95,9 @@
                                 <option value="5">Prateleira 5</option>
                                 <option value="6">Prateleira 6</option>
                                 <option value="7">Prateleira 7</option>
+                                <option value="8">Prateleira 8</option>
+                                <option value="9">Prateleira 9</option>
+                                <option value="10">Prateleira 10</option>
                             </select>
                         </div>
                     </div>
@@ -99,7 +108,92 @@
                 newForm.querySelector('.lessForm').addEventListener('click', function() { newForm.remove(); });
                 newForm.querySelector('.lessResponsive').addEventListener('click', function() { newForm.remove(); });
             });
-            // ---------- CRIAÇÃO DE NOVOS FORMS CADASTRO ---------- //
+            // ---------- CRIAÇÃO DE NOVOS FORMS CADASTRO ALMOXARIFADO ---------- //
+        </script>
+        <script>
+            // ---------- CRIAÇÃO DE NOVOS FORMS CADASTRO ESTOQUE LIMPEZA ---------- //
+            document.getElementById('moreFormsLimpeza').addEventListener('click', function() {
+                var newFormLimpeza = document.createElement('div');
+                let formNumLimpeza = document.querySelectorAll('.marginForm').length + 1;
+                newFormLimpeza.className = `marginForm form${formNumLimpeza}`;
+                newFormLimpeza.innerHTML = `
+                    <i class="fas fa-minus-circle lessResponsive"></i>
+                    <div class="rowForm firstRow">
+                        <div class="colForm">
+                            <label for="codBarraProd">Código de barras:</label>
+                            <input type="text" name="codBarraProd" required>
+                        </div>
+                        <div class="colForm">
+                            <label for="nomeProduto">Item:</label>
+                            <input type="text" name="nomeProduto" required>
+                        </div>
+                        <div class="colForm">
+                            <i class="fas fa-minus-circle lessForm"></i>
+                        </div>
+                    </div>
+                    <div class="rowForm">
+                        <div class="colForm">
+                            <label for="descricaoProduto">Descrição:</label>
+                            <input type="text" name="descricaoProduto" required>
+                        </div>
+                        <div class="colForm">
+                            <label for="corProduto">Cor:</label>
+                            <input type="text" name="corProduto" required>
+                        </div>
+                    </div>
+                    <div class="rowForm">
+                        <div class="colForm">
+                            <label for="qtdEstoque">Quantidade:</label>
+                            <input type="text" name="qtdEstoque" required>
+                        </div>
+                        <div class="colForm">
+                            <label for="categoriaProd">Categoria:</label>
+                            <select name="categoriaProd" id="categoriaProd" required>
+                                <option value="1">Material de Limpeza</option>
+                                <option value="2">Produto de Limpeza</option>
+                                <option value="3">EPI</option>
+                                <option value="4">Produto de Higiêne</option>
+                                <option value="5">Material de Construção</option>
+                                <option value="6">Ferramentas</option>
+                                <option value="7">Material de Jardinagem</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="rowForm">
+                        <div class="colForm">
+                            <label for="armarioaEstoqueLimpeza">ARMARIO:</label>
+                            <select name="armarioaEstoqueLimpeza" id="armarioaEstoqueLimpeza" required>
+                                <option value="0">RECEBENDO</option>
+                                <option value="1">Armario 1</option>
+                                <option value="2">Armario 2</option>
+                                <option value="3">Armario 3</option>
+                                <option value="4">Armario 4</option>
+                                <option value="5">Armario 5</option>
+                                <option value="6">Armario 6</option>
+                            </select>
+                        </div>
+                        <div class="colForm">
+                            <label for="prateleiraEstoqueLimpeza">PRATELEIRA:</label>
+                            <select name="prateleiraEstoqueLimpeza" id="prateleiraEstoqueLimpeza" required>
+                                <option value="0">RECEBENDO</option>
+                                <option value="1">Prateleira 1</option>
+                                <option value="2">Prateleira 2</option>
+                                <option value="3">Prateleira 3</option>
+                                <option value="4">Prateleira 4</option>
+                                <option value="5">Prateleira 5</option>
+                                <option value="6">Prateleira 6</option>
+                                <option value="7">Prateleira 7</option>
+                            </select>
+                        </div>
+                    </div>
+                `;
+                document.querySelector('.newFormLimpeza').appendChild(newFormLimpeza);
+                
+                // Adiciona o evento de clique ao ícone de remoção
+                newFormLimpeza.querySelector('.lessForm').addEventListener('click', function() { newFormLimpeza.remove(); });
+                newFormLimpeza.querySelector('.lessResponsive').addEventListener('click', function() { newFormLimpeza.remove(); });
+            });
+            // ---------- CRIAÇÃO DE NOVOS FORMS CADASTRO ESTOQUE LIMPEZA ---------- //
         </script>
         <script src="/js/script.js"></script>
     </html>
