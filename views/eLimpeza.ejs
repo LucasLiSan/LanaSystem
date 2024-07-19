@@ -12,13 +12,13 @@
                     <i class="far fa-list-alt" id="listIcon"></i>
                 </div>
                 <div class="containerAlmoxarifado">
-                    <% for (let armario in produtosOrganizados) { %>
-                        <div class="armarios" id="armario<%= armario %>" tabindex="0">
-                            <h3>ARMÁRIO <%= armario %></h3>
-                            <% for (let prateleira in produtosOrganizados[armario]) { %>
-                                <div class="prateleiras" id="A<%= armario %>P<%= prateleira %>" tabindex="0">
-                                    <h3>PRATELEIRA <%= prateleira %></h3>
-                                    <% produtosOrganizados[armario][prateleira].forEach(produto => { %>
+                    <% for (let armarioLimpeza in prodsLimpezaOrganizados) { %>
+                        <div class="armarios" id="armario<%= armarioLimpeza %>" tabindex="0">
+                            <h3>ARMÁRIO <%= armarioLimpeza %></h3>
+                            <% for (let prateleiraLimpeza in prodsLimpezaOrganizados[armarioLimpeza]) { %>
+                                <div class="prateleiras" id="A<%= armarioLimpeza %>P<%= prateleiraLimpeza %>" tabindex="0">
+                                    <h3>PRATELEIRA <%= prateleiraLimpeza %></h3>
+                                    <% prodsLimpezaOrganizados[armarioLimpeza][prateleiraLimpeza].forEach(prodLimpeza => { %>
                                         <div class="cardItemAlmoxarifado">
                                             <div class="imgItem">
                                                 <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
@@ -26,21 +26,21 @@
                                             <div class="infosItem">
                                                 <div class="row">
                                                     <label for="nomeItem">Item:</label>
-                                                    <input type="text" name="nomeItem" value="<%= produto.nomeProduto %>" disabled>
+                                                    <input type="text" name="nomeItem" value="<%= prodLimpeza.nomeProduto %>" disabled>
                                                 </div>
                                                 <div class="row rowAlt">
                                                     <div class="col">
                                                         <label for="corItem">Cor:</label>
-                                                        <input type="text" name="corItem" value="<%= produto.corProduto %>" disabled>
+                                                        <input type="text" name="corItem" value="<%= prodLimpeza.corProduto %>" disabled>
                                                     </div>
                                                     <div class="col">
                                                         <label for="qtdItem">Quantidade:</label>
-                                                        <input type="text" name="qtdItem" value="<%= produto.qtdEstoque %>" disabled>
+                                                        <input type="text" name="qtdItem" value="<%= prodLimpeza.qtdEstoque %>" disabled>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <label for="validItem">Validade:</label>
-                                                    <input type="text" name="validItem" value="Indeterminada" disabled>
+                                                    <input type="text" name="validItem" value="<%= dataDeValidade(prodLimpeza.validadeProd) %>" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -65,18 +65,18 @@
                             <span></span>
                         </div>
                         <div class="gridBody">
-                            <% produtos.forEach(produto => { %>
+                            <% prodsLimpeza.forEach(prodLimpeza => { %>
                                 <div class="gridBodyRow">
-                                    <span>#<%= produto.idProduto %></span>
-                                    <span><%= produto.nomeProduto %></span>
-                                    <span><%= produto.descricaoProduto %></span>
-                                    <span><%= produto.corProduto %></span>
-                                    <span><%= produto.qtdEstoque %></span>
-                                    <span><%= produto.categoria.categoria %></span>
-                                    <span><%= produto.codBarraProd %></span>
-                                    <span><a class="myModalBtn" data-id="<%= produto.idProduto %>"><i class="fas fa-eye"></i></a></span>
-                                    <span><a href="<%= produto.idProduto %>"><i class="fas fa-pencil-alt"></i></a></span>
-                                    <span><a href="<%= produto.idProduto %>"><i class="fas fa-eraser"></i></i></a></span>
+                                    <span>#<%= prodLimpeza.idProduto %></span>
+                                    <span><%= prodLimpeza.nomeProduto %></span>
+                                    <span><%= prodLimpeza.descricaoProduto %></span>
+                                    <span><%= prodLimpeza.corProduto %></span>
+                                    <span><%= prodLimpeza.qtdEstoque %></span>
+                                    <span><%= prodLimpeza.categoriaProdLimp?.categoria || 'N/A' %></span>
+                                    <span><%= prodLimpeza.codBarraProd %></span>
+                                    <span><a class="myModalBtn" data-id="<%= prodLimpeza.idProduto %>"><i class="fas fa-eye"></i></a></span>
+                                    <span><a href="<%= prodLimpeza.idProduto %>"><i class="fas fa-pencil-alt"></i></a></span>
+                                    <span><a href="<%= prodLimpeza.idProduto %>"><i class="fas fa-eraser"></i></i></a></span>
                                 </div>
                             <% }); %>
                         </div>
@@ -108,7 +108,7 @@
                     </div>
                     <!-- Elemento oculto para armazenar o JSON -->
                     <div id="produtosData" style="display: none;">
-                        <%- JSON.stringify(produtos) %>
+                        <%- JSON.stringify(prodsLimpeza) %>
                     </div>
                 </div>
                 <div class="entradasAlmoxarifado">
@@ -125,14 +125,14 @@
                     <form class="formInterno" action="/almoxarifado/edit" method="POST" tabindex="0">
                         <div class="bodyForm">
                             <div class="desorganizado">
-                                <% for (let armario in produtosOrganizados) { %>
-                                    <% if (armario == 0) { %>
-                                        <div class="armarios armarioForm" id="armario<%= armario %>" tabindex="0">
+                                <% for (let armarioLimpeza in prodsLimpezaOrganizados) { %>
+                                    <% if (armarioLimpeza == 0) { %>
+                                        <div class="armarios armarioForm" id="armario<%= armarioLimpeza %>" tabindex="0">
                                             <h3>RECEBIDOS</h3>
-                                            <% for (let prateleira in produtosOrganizados[armario]) { %>
-                                                <div class="prateleiras" id="A<%= armario %>P<%= prateleira %>" tabindex="0">
+                                            <% for (let prateleiraLimpeza in prodsLimpezaOrganizados[armarioLimpeza]) { %>
+                                                <div class="prateleiras" id="A<%= armarioLimpeza %>P<%= prateleiraLimpeza %>" tabindex="0">
                                                     <h3>A organizar</h3>
-                                                    <% produtosOrganizados[armario][prateleira].forEach(produto => { %>
+                                                    <% prodsLimpezaOrganizados[armarioLimpeza][prateleiraLimpeza].forEach(produto => { %>
                                                         <div class="cardItemAlmoxarifado">
                                                             <div class="imgItem">
                                                                 <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
@@ -281,10 +281,10 @@
                                     <label for="codBarraProdNew">Cód. Barra</label>
                                     <select class="codBarraProdSelect" name="codBarraProdNew">
                                         <option value="">SELECIONE</option>
-                                        <% for (let armario in produtosOrganizados) { %>
-                                            <% if (armario == 0) { %>
-                                                <% for (let prateleira in produtosOrganizados[armario]) { %>
-                                                    <% produtosOrganizados[armario][prateleira].forEach(produto => { %>
+                                        <% for (let armarioLimpeza in prodsLimpezaOrganizados) { %>
+                                            <% if (armarioLimpeza == 0) { %>
+                                                <% for (let prateleiraLimpeza in prodsLimpezaOrganizados[armarioLimpeza]) { %>
+                                                    <% prodsLimpezaOrganizados[armarioLimpeza][prateleiraLimpeza].forEach(produto => { %>
                                                         <option value="<%= produto.codBarraProd %>"
                                                             data-id="<%= produto.idProduto %>"
                                                             data-nome="<%= produto.nomeProduto %>"

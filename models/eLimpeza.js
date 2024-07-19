@@ -1,7 +1,5 @@
 /* ---------- MODEL DO ESTOQUE DA LIMPEZA ---------- */
 
-/* ---------- MODEL DO ALMOXARIFADO ---------- */
-
 import Sequelize from "sequelize";
 import connection from "../configuration/sequelizeConfig.js";
 
@@ -41,7 +39,7 @@ const EstoqueLimpeza = connection.define('estoqueLimpeza',
             allowNull: false
         },
         validadeProd: {
-            type: Sequelize.DATE,
+            type: Sequelize.STRING,
             allowNull: false
         },
         tipoProd: {

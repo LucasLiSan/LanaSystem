@@ -9,43 +9,69 @@ import path from "path";
 /* ----------/\ IMPORTAÇÃO DE MÓDULOS /\---------- */
 /* ----------\/ IMPORTAÇÃO DE TABLES \/---------- */
 import EstoqueLimpeza from "../models/eLimpeza.js"
-import Localizacao from "../models/localizacao.js";
-import Categorias from "../models/categoria.js";
+import LocalizacaoLimpeza from "../models/localizacaoLimpeza.js";
+import CategoriasProdLimp from "../models/categoriaProdLimp.js";
 import "../models/associacoes.js";
 import { where } from "sequelize";
 /* ----------/\ IMPORTAÇÃO DE TABLES /\---------- */
 const router = express.Router();
 
+function formatDate(dateString) {
+    if (dateString === '0000-00-00 00:00:00') { return 'INDETERMINADA'; }
+
+    const months = [
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    ];
+
+    const date = new Date(dateString);
+
+    if (isNaN(date.getTime())) { return 'INDETERMINADO'; }
+
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    
+    return `${day} ${month} ${year}`;
+}
+
 /* ----------\/ ROTA PRINCIPAL VIEW ESTOQUE DA LIMPEZA (LISTAS GERAIS E POR ARMARIOS) \/---------- */
 router.get('/eLimpeza', async function(req, res) {
-    const produtos = await EstoqueLimpeza.findAll({
-        include: [
-            {
-                model: Categorias,
-                as: 'categoriaProdLimp'
-            },
-            {
-                model: Localizacao,
-                as: 'localizacaoProdLimp'
+    try {
+        const prodsLimpeza = await EstoqueLimpeza.findAll({
+            include: [
+                {
+                    model: CategoriasProdLimp,
+                    as: 'categoriaProdLimp'
+                },
+                {
+                    model: LocalizacaoLimpeza,
+                    as: 'localizacaoProdLimp'
+                }
+            ]
+        });
+
+        const prodsLimpezaOrganizados = {};
+        prodsLimpeza.forEach(prodLimpeza => {
+            const armarioLimpeza = prodLimpeza.localizacaoProdLimp?.armario;
+            const prateleiraLimpeza = prodLimpeza.localizacaoProdLimp?.prateleira;
+
+            if (armarioLimpeza && prateleiraLimpeza) {
+                if (!prodsLimpezaOrganizados[armarioLimpeza]) { prodsLimpezaOrganizados[armarioLimpeza] = {}; }
+                if (!prodsLimpezaOrganizados[armarioLimpeza][prateleiraLimpeza]) { prodsLimpezaOrganizados[armarioLimpeza][prateleiraLimpeza] = []; }
+                prodsLimpezaOrganizados[armarioLimpeza][prateleiraLimpeza].push(prodLimpeza);
             }
-        ]
-    });
-    const produtosOrganizados = {};
-    produtos.forEach(produto => {
-        const armario = produto.localizacao.armario;
-        const prateleira = produto.localizacao.prateleira;
+        });
 
-        if (!produtosOrganizados[armario]) { produtosOrganizados[armario] = {}; }
-
-        if (!produtosOrganizados[armario][prateleira]) { produtosOrganizados[armario][prateleira] = []; }
-
-        produtosOrganizados[armario][prateleira].push(produto);
-    });
-
-    res.render("eLimpeza", {
-        produtos: produtos,
-        produtosOrganizados: produtosOrganizados
-    });
+        res.render("eLimpeza", {
+            prodsLimpeza: prodsLimpeza,
+            prodsLimpezaOrganizados: prodsLimpezaOrganizados,
+            dataDeValidade: formatDate
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 /* ----------/\ ROTA PRINCIPAL VIEW ESTOQUE DA LIMPEZA (LISTAS GERAIS E POR ARMARIOS) /\---------- */
 
