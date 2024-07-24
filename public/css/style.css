@@ -725,7 +725,7 @@ main {
 
 .formEntradasAlmoxarifado, .formEntradasEstoqueLimpeza {
     width: 90%;
-    height: 85%;
+    
     padding: 1rem;
     display: grid;
     grid-auto-rows: 1fr 10%;
@@ -1010,20 +1010,20 @@ footer span {
 
     nav li { padding-left: 0.5rem; }
 
-    .mainAlmoxarifado .title > i {
+    .mainAlmoxarifado .title > i, .mainEstoqueLimpeza .title > i {
         width: 15%;
         font-size: 1.5rem;
     }
 
-    .mainAlmoxarifado .title { height: 3rem; }
+    .mainAlmoxarifado .title, .mainEstoqueLimpeza .title { height: 3rem; }
 
-    .mainAlmoxarifado h1 {
+    .mainAlmoxarifado h1, .mainEstoqueLimpeza h1 {
         height: 3rem;
         margin-left: 0.3rem;
         font-size: 1.3rem;
     }
 
-    .mainAlmoxarifado h1 > i {
+    .mainAlmoxarifado h1 > i, .mainEstoqueLimpeza h1 > i {
         margin-left: 0.3rem;
         font-size: 1.3rem;
     }
@@ -1032,7 +1032,7 @@ footer span {
     
     .gridBodyRow { grid-template-columns: 10rem 15rem 15rem 15rem 15rem 15rem 15rem 5rem 5rem 5rem; }
 
-    .formEntradasAlmoxarifado { width: 95%;}
+    .formEntradasAlmoxarifado, .formEntradasEstoqueLimpeza { width: 95%;}
 
 }
 
@@ -1042,9 +1042,9 @@ footer span {
         right: 10rem;
     }
 
-    .formEntradasAlmoxarifado { width: 90%;}
+    .formEntradasAlmoxarifado, .formEntradasEstoqueLimpeza { width: 90%;}
 
-    .formEntradasAlmoxarifado > .btnFormEntradasAlmoxarifado { width: 80%; }
+    .formEntradasAlmoxarifado > .btnFormEntradasAlmoxarifado, .formEntradasEstoqueLimpeza > .btnFormEntradasEstoqueLimpeza { width: 80%; }
 
     .rowForm {
         width: 100%;
@@ -1074,7 +1074,7 @@ footer span {
         right: 8rem;
     }
 
-    .formEntradasAlmoxarifado { width: 85%;}
+    .formEntradasAlmoxarifado, .formEntradasEstoqueLimpeza { width: 85%;}
 }
 
 @media (width < 321px) {
@@ -1083,7 +1083,7 @@ footer span {
         right: 7rem;
     }
 
-    .formEntradasAlmoxarifado { width: 80%;}
+    .formEntradasAlmoxarifado, .formEntradasEstoqueLimpeza { width: 80%;}
 
     .internoAlmoxarifdo > h4,
     .internoEstoqueLimpeza > h4 { font-size: 2rem; }

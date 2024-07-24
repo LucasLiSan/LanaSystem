@@ -161,6 +161,45 @@
                     </div>
                     <div class="rowForm">
                         <div class="colForm">
+                            <label for="marcaProd">Marca:</label>
+                            <input type="text" name="marcaProd" required>
+                        </div>
+                        <div class="colForm">
+                            <label for="validadeProd">Validade:</label>
+                            <input type="text" name="validadeProd" required>
+                        </div>
+                    </div>
+                    <div class="rowForm">
+                        <div class="colForm">
+                            <label for="tipoProd">Tipo:</label>
+                            <select name="tipoProd" id="tipoProd" required>
+                                <option value="1">PLANOS</option>
+                                <option value="2">VOLUMOSOS</option>
+                                <option value="3">LÍQUIDOS</option>
+                                <option value="4">SÓLIDOS</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="rowForm planos">
+                        <div class="colForm">
+                            <label for="tipoProd">Forma:</label>
+                            <select name="tipoProd" id="tipoProd" required>
+                                <option value="Triângulo">Triângulo</option>
+                                <option value="Quadrado">Quadrado</option>
+                                <option value="Circulo">Circulo</option>
+                            </select>
+                        </div>
+                        <div class="colForm">
+                            <label for="dimLargura">Largura(cm):</label>
+                            <input type="number" name="dimLargura" required>
+                        </div>
+                        <div class="colForm">
+                            <label for="dimComprimento">Comprimento(cm):</label>
+                            <input type="number" name="dimComprimento" required>
+                        </div>
+                    </div>
+                    <div class="rowForm">
+                        <div class="colForm">
                             <label for="armarioaEstoqueLimpeza">ARMARIO:</label>
                             <select name="armarioaEstoqueLimpeza" id="armarioaEstoqueLimpeza" required>
                                 <option value="0">RECEBENDO</option>
