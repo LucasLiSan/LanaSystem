@@ -24,9 +24,15 @@
                                                 <img src="imgs/imgsDefault/materialEscolar.webp" alt="material Escolar">
                                             </div>
                                             <div class="infosItem">
-                                                <div class="row">
-                                                    <label for="nomeItem">Item:</label>
-                                                    <input type="text" name="nomeItem" value="<%= prodLimpeza.nomeProduto %>" disabled>
+                                                <div class="row rowAlt">
+                                                    <div class="col">
+                                                        <label for="nomeItem">Item:</label>
+                                                        <input type="text" name="nomeItem" value="<%= prodLimpeza.nomeProduto %>" disabled>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="marcaItem">Marca:</label>
+                                                        <input type="text" name="marcaItem" value="<%= prodLimpeza.marcaProd %>" disabled>
+                                                    </div>
                                                 </div>
                                                 <div class="row rowAlt">
                                                     <div class="col">
@@ -38,9 +44,15 @@
                                                         <input type="text" name="qtdItem" value="<%= prodLimpeza.qtdEstoque %>" disabled>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <label for="validItem">Validade:</label>
-                                                    <input type="text" name="validItem" value="<%= dataDeValidade(prodLimpeza.validadeProd) %>" disabled>
+                                                <div class="row rowAlt">
+                                                    <div class="col">
+                                                        <label for="validItem">Validade:</label>
+                                                        <input type="text" name="validItem" value="<%= dataDeValidade(prodLimpeza.validadeProd) %>" disabled>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="situacaoItem">Situação:</label>
+                                                        <input type="text" name="situacaoItem" value="<%= prodLimpeza.situacaoProd %>" disabled>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -53,13 +65,14 @@
                 <div class="listaGeralEstoqueLimpeza">
                     <div class="gridGeral">
                         <div class="gridHead">
-                            <span>ID: </span>
                             <span>PRODUTO: </span>
                             <span>DESCRIÇÃO: </span>
+                            <span>MARCA: </span>
                             <span>COR: </span>
                             <span>QUANTIDADE: </span>
-                            <span>CATEGORIA: </span>
+                            <span>VALIDADE: </span>
                             <span>CÓD. BARRAS: </span>
+                            <span>SITUAÇÃO: </span>
                             <span></span>
                             <span></span>
                             <span></span>
@@ -67,13 +80,14 @@
                         <div class="gridBody">
                             <% prodsLimpeza.forEach(prodLimpeza => { %>
                                 <div class="gridBodyRow">
-                                    <span>#<%= prodLimpeza.idProduto %></span>
                                     <span><%= prodLimpeza.nomeProduto %></span>
                                     <span><%= prodLimpeza.descricaoProduto %></span>
+                                    <span><%= prodLimpeza.marcaProd %></span>
                                     <span><%= prodLimpeza.corProduto %></span>
                                     <span><%= prodLimpeza.qtdEstoque %></span>
-                                    <span><%= prodLimpeza.categoriaProdLimp?.categoria || 'N/A' %></span>
+                                    <span><%= dataDeValidade(prodLimpeza.validadeProd) %></span>
                                     <span><%= prodLimpeza.codBarraProd %></span>
+                                    <span><%= prodLimpeza.situacaoProd %></span>
                                     <span><a class="myModalBtn" data-id="<%= prodLimpeza.idProduto %>"><i class="fas fa-eye"></i></a></span>
                                     <span><a href="<%= prodLimpeza.idProduto %>"><i class="fas fa-pencil-alt"></i></a></span>
                                     <span><a href="<%= prodLimpeza.idProduto %>"><i class="fas fa-eraser"></i></i></a></span>
@@ -259,7 +273,8 @@
                     document.querySelector('.saidasEstoquesLimpeza').style.display = 'flex';
                 });
                 // ---------- MOSTRAR ESCONDER DIVS ---------- //
-
+            </script>
+            <script>
                 // ---------- CRIAÇÃO DE NOVOS CARDS COM ORGANIZAÇÃO CONFORME DISPONIBILIDADE ---------- //
                 document.getElementById('moreCards').addEventListener('click', function() {
                     var newCard = document.createElement('div');
@@ -393,5 +408,248 @@
                 document.querySelectorAll('.cardItemEstoqueLimpeza').forEach(attachEventListeners);
                 // ---------- CRIAÇÃO DE NOVOS CARDS COM ORGANIZAÇÃO CONFORME DISPONIBILIDADE ---------- //
             </script>
+            <script>
+                // ---------- CRIAÇÃO DE NOVOS FORMS CADASTRO ESTOQUE LIMPEZA ---------- //
+                document.getElementById('moreFormsLimpeza').addEventListener('click', function() {
+                    var newFormLimpeza = document.createElement('div');
+                    let formNumLimpeza = document.querySelectorAll('.marginForm').length + 1;
+                    newFormLimpeza.className = `marginForm form${formNumLimpeza}`;
+                    newFormLimpeza.innerHTML = `
+                        <i class="fas fa-minus-circle lessResponsive"></i>
+                        <div class="rowForm firstRow">
+                            <div class="colForm">
+                                <label for="codBarraProd">Código de barras:</label>
+                                <input type="text" name="codBarraProd" required>
+                            </div>
+                            <div class="colForm">
+                                <label for="nomeProduto">Item:</label>
+                                <input type="text" name="nomeProduto" required>
+                            </div>
+                            <div class="colForm">
+                                <i class="fas fa-minus-circle lessForm"></i>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <div class="colForm">
+                                <label for="descricaoProduto">Descrição:</label>
+                                <input type="text" name="descricaoProduto" required>
+                            </div>
+                            <div class="colForm">
+                                <label for="corProduto">Cor:</label>
+                                <input type="text" name="corProduto" required>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <div class="colForm">
+                                <label for="qtdEstoque">Quantidade:</label>
+                                <input type="text" name="qtdEstoque" required>
+                            </div>
+                            <div class="colForm">
+                                <label for="categoriaProd">Categoria:</label>
+                                <select name="categoriaProd" id="categoriaProd" required>
+                                    <option value="1">Material de Limpeza</option>
+                                    <option value="2">Produto de Limpeza</option>
+                                    <option value="3">EPI</option>
+                                    <option value="4">Produto de Higiêne</option>
+                                    <option value="5">Material de Construção</option>
+                                    <option value="6">Ferramentas</option>
+                                    <option value="7">Material de Jardinagem</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <div class="colForm">
+                                <label for="marcaProd">Marca:</label>
+                                <input type="text" name="marcaProd" required>
+                            </div>
+                            <div class="colForm">
+                                <label for="validadeProd">Validade:</label>
+                                <input type="text" name="validadeProd" required>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <div class="colForm">
+                                <label for="tipoProd">Tipo:</label>
+                                <select name="tipoProd" class="tipoProd" required>
+                                    <option value="1">PLANOS</option>
+                                    <option value="2">VOLUMOSOS</option>
+                                    <option value="3">LÍQUIDOS</option>
+                                    <option value="4">SÓLIDOS</option>
+                                    <option value="5">VESTUÁRIO</option>
+                                </select>
+                            </div>
+                            <div class="colForm">
+                                <label for="situacaoProd">Situação:</label>
+                                <select name="situacaoProd" class="situacaoProd" required>
+                                    <option value="ABERTO">ABERTO</option>
+                                    <option value="FECHADO">FECHADO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="rowForm planos">
+                            <div class="colForm">
+                                <label for="formaProd">Forma:</label>
+                                <select name="formaProd" class="formaPlanaProd" required>
+                                    <option value="Quadrado">Quadrado</option>
+                                    <option value="Triângulo">Triângulo</option>
+                                    <option value="Circulo">Circulo</option>
+                                </select>
+                            </div>
+                            <div class="colForm retoPlano">
+                                <label for="dimLargura">Largura(cm):</label>
+                                <input type="number" name="dimLargura" required>
+                            </div>
+                            <div class="colForm retoPlano">
+                                <label for="dimComprimento">Comprimento(cm):</label>
+                                <input type="number" name="dimComprimento" required>
+                            </div>
+                            <div class="colForm circuloPlano">
+                                <label for="dimRaio">Raio(cm):</label>
+                                <input type="number" name="dimRaio" required>
+                            </div>
+                        </div>
+                        <div class="rowForm volumosos">
+                            <div class="colForm">
+                                <label for="formaProd">Forma:</label>
+                                <select name="formaProd" class="forma3DProd" required>
+                                    <option value="Quadrado">Quadrado</option>
+                                    <option value="Circulo">Circulo</option>
+                                </select>
+                            </div>
+                            <div class="colForm reto3D">
+                                <label for="dimLargura">Largura(cm):</label>
+                                <input type="number" name="dimLargura" required>
+                            </div>
+                            <div class="colForm reto3D">
+                                <label for="dimComprimento">Comprimento(cm):</label>
+                                <input type="number" name="dimComprimento" required>
+                            </div>
+                            <div class="colForm">
+                                <label for="dimAltura">Altura(cm):</label>
+                                <input type="number" name="dimAltura" required>
+                            </div>
+                            <div class="colForm circulo3D">
+                                <label for="dimRaio">Raio(cm):</label>
+                                <input type="number" name="dimRaio" required>
+                            </div>
+                        </div>
+                        <div class="rowForm liquidos">
+                            <div class="colForm">
+                                <label for="litros">Litros(ml):</label>
+                                <input type="number" name="litros" required>
+                            </div>
+                        </div>
+                        <div class="rowForm solidos">
+                            <div class="colForm">
+                                <label for="peso">Peso(g):</label>
+                                <input type="number" name="peso" required>
+                            </div>
+                        </div>
+                        <div class="rowForm vestuario">
+                            <div class="colForm">
+                                <label for="tamanho">TAMANHO:</label>
+                                <input type="text" name="tamanho" required>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <div class="colForm">
+                                <label for="armarioaEstoqueLimpeza">ARMARIO:</label>
+                                <select name="armarioaEstoqueLimpeza" id="armarioaEstoqueLimpeza" required>
+                                    <option value="0">RECEBENDO</option>
+                                    <option value="1">Armario 1</option>
+                                    <option value="2">Armario 2</option>
+                                    <option value="3">Armario 3</option>
+                                    <option value="4">Armario 4</option>
+                                    <option value="5">Armario 5</option>
+                                    <option value="6">Armario 6</option>
+                                </select>
+                            </div>
+                            <div class="colForm">
+                                <label for="prateleiraEstoqueLimpeza">PRATELEIRA:</label>
+                                <select name="prateleiraEstoqueLimpeza" id="prateleiraEstoqueLimpeza" required>
+                                    <option value="0">RECEBENDO</option>
+                                    <option value="1">Prateleira 1</option>
+                                    <option value="2">Prateleira 2</option>
+                                    <option value="3">Prateleira 3</option>
+                                    <option value="4">Prateleira 4</option>
+                                    <option value="5">Prateleira 5</option>
+                                    <option value="6">Prateleira 6</option>
+                                    <option value="7">Prateleira 7</option>
+                                </select>
+                            </div>
+                        </div>
+                    `;
+                    document.querySelector('.newFormLimpeza').appendChild(newFormLimpeza);
+                    
+                    // Adiciona o evento de clique ao ícone de remoção
+                    newFormLimpeza.querySelector('.lessForm').addEventListener('click', function() { newFormLimpeza.remove(); });
+                    newFormLimpeza.querySelector('.lessResponsive').addEventListener('click', function() { newFormLimpeza.remove(); });
 
+                    // ---------- ABRIR E FECHAR OPÇÕES DE FORMAS DE PRODUTOS ESTOQUE DE LIMPEZA ---------- //
+                    const tipoProd = newFormLimpeza.querySelector('.tipoProd');
+                    const divPlanos = newFormLimpeza.querySelector('.planos');
+                    const divVolumosos = newFormLimpeza.querySelector('.volumosos');
+                    const divLiquidos = newFormLimpeza.querySelector('.liquidos');
+                    const divSolidos = newFormLimpeza.querySelector('.solidos');
+                    const divVestuario = newFormLimpeza.querySelector('.vestuario');
+
+                    function handleTipoChange() {
+                        const selectedValue = tipoProd.value;
+                        divPlanos.style.display = 'none';
+                        divVolumosos.style.display = 'none';
+                        divLiquidos.style.display = 'none';
+                        divSolidos.style.display = 'none';
+                        divVestuario.style.display = 'none';
+
+                        if (selectedValue === '1') { divPlanos.style.display = 'grid'; }
+                        else if (selectedValue === '2') { divVolumosos.style.display = 'grid'; }
+                        else if (selectedValue === '3') { divLiquidos.style.display = 'grid'; }
+                        else if (selectedValue === '4') { divSolidos.style.display = 'grid'; }
+                        else if (selectedValue === '5') { divVestuario.style.display = 'grid'; }
+                    }
+
+                    tipoProd.addEventListener('change', handleTipoChange);
+                    handleTipoChange(); // Para garantir que a div correta esteja visível no carregamento inicial
+
+                    const formaPlanaProd = newFormLimpeza.querySelector('.formaPlanaProd');
+                    const divRetosPlanos = newFormLimpeza.querySelectorAll('.retoPlano');
+                    const divCirculosPlanos = newFormLimpeza.querySelectorAll('.circuloPlano');
+
+                    function handleFormaPlnaChange() {
+                        const selectedValue = formaPlanaProd.value;
+                        divRetosPlanos.forEach(div => div.style.display = 'none');
+                        divCirculosPlanos.forEach(div => div.style.display = 'none');
+
+                        if (selectedValue === 'Triângulo' || selectedValue === 'Quadrado') { 
+                            divRetosPlanos.forEach(div => div.style.display = 'flex');
+                        } else if (selectedValue === 'Circulo') {
+                            divCirculosPlanos.forEach(div => div.style.display = 'flex');
+                        }
+                    }
+
+                    formaPlanaProd.addEventListener('change', handleFormaPlnaChange);
+                    handleFormaPlnaChange(); // Para garantir que a div correta esteja visível no carregamento inicial
+
+                    const forma3DProd = newFormLimpeza.querySelector('.forma3DProd');
+                    const divRetos3D = newFormLimpeza.querySelectorAll('.reto3D');
+                    const divCirculos3D = newFormLimpeza.querySelectorAll('.circulo3D');
+
+                    function handleForma3DChange() {
+                        const selectedValue = forma3DProd.value;
+                        divRetos3D.forEach(div => div.style.display = 'none');
+                        divCirculos3D.forEach(div => div.style.display = 'none');
+
+                        if (selectedValue === 'Quadrado') { 
+                            divRetos3D.forEach(div => div.style.display = 'flex');
+                        } else if (selectedValue === 'Circulo') {
+                            divCirculos3D.forEach(div => div.style.display = 'flex');
+                        }
+                    }
+
+                    forma3DProd.addEventListener('change', handleForma3DChange);
+                    handleForma3DChange(); // Para garantir que a div correta esteja visível no carregamento inicial
+                    // ---------- ABRIR E FECHAR OPÇÕES DE FORMAS DE PRODUTOS ESTOQUE DE LIMPEZA ---------- //
+                });
+                // ---------- CRIAÇÃO DE NOVOS FORMS CADASTRO ESTOQUE LIMPEZA ---------- //
+            </script>
 <%- include ('partials/footer.ejs') %>

@@ -555,7 +555,7 @@ main {
     width: 100%;
     height: 3rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 5% 5% 5%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 5% 5% 5%;
     align-items: center;
     background: var(--colorFour);
 }
@@ -584,7 +584,7 @@ main {
 .gridBodyRow {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 5% 5% 5%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 5% 5% 5%;
 }
 
 .gridBodyRow:nth-child(odd) { background: var(--colorOne); }
@@ -810,6 +810,12 @@ main {
     text-transform: uppercase;
     border-radius: 1rem;
     background: var(--colorOne);
+}
+
+.planos, .volumosos,
+.liquidos, .solidos,
+.vestuario {
+    background: var(--colorFour);
 }
 
 /* -----/\ TELA CADASTRO (ENTRADAS) /\----- */

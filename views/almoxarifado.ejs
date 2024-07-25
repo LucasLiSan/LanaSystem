@@ -264,7 +264,8 @@
                     document.querySelector('.saidasAlmoxarifado').style.display = 'flex';
                 });
                 // ---------- MOSTRAR ESCONDER DIVS ---------- //
-
+            </script>
+            <script>
                 // ---------- CRIAÇÃO DE NOVOS CARDS COM ORGANIZAÇÃO CONFORME DISPONIBILIDADE ---------- //
                 document.getElementById('moreCards').addEventListener('click', function() {
                     var newCard = document.createElement('div');
@@ -403,6 +404,107 @@
                 }
                 document.querySelectorAll('.cardItemAlmoxarifado').forEach(attachEventListeners);
                 // ---------- CRIAÇÃO DE NOVOS CARDS COM ORGANIZAÇÃO CONFORME DISPONIBILIDADE ---------- //
+            </script>
+            <script>
+                // ---------- CRIAÇÃO DE NOVOS FORMS CADASTRO ALMOXARIFADO ---------- //
+                document.getElementById('moreForms').addEventListener('click', function() {
+                    var newForm = document.createElement('div');
+                    let formNum = document.querySelectorAll('.marginForm').length + 1;
+                    newForm.className = `marginForm form${formNum}`;
+                    newForm.innerHTML = `
+                        <i class="fas fa-minus-circle lessResponsive"></i>
+                        <div class="rowForm firstRow">
+                            <div class="colForm">
+                                <label for="codBarraProd">Código de barras:</label>
+                                <input type="text" name="codBarraProd" required>
+                            </div>
+                            <div class="colForm">
+                                <label for="nomeProduto">Item:</label>
+                                <input type="text" name="nomeProduto" required>
+                            </div>
+                            <div class="colForm">
+                                <i class="fas fa-minus-circle lessForm"></i>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <div class="colForm">
+                                <label for="descricaoProduto">Descrição:</label>
+                                <input type="text" name="descricaoProduto" required>
+                            </div>
+                            <div class="colForm">
+                                <label for="corProduto">Cor:</label>
+                                <input type="text" name="corProduto" required>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <div class="colForm">
+                                <label for="qtdEstoque">Quantidade:</label>
+                                <input type="text" name="qtdEstoque" required>
+                            </div>
+                            <div class="colForm">
+                                <label for="categoriaProd">Categoria:</label>
+                                <select name="categoriaProd" id="categoriaProd" required>
+                                    <option value="1">Material de Escritório</option>
+                                    <option value="2">Material Escolar</option>
+                                    <option value="3">Material Didático</option>
+                                    <option value="4">Material de Arte</option>
+                                    <option value="5">Equipamentos de Tecnologia</option>
+                                    <option value="6">Material de Limpeza</option>
+                                    <option value="7">Equipamentos de Segurança</option>
+                                    <option value="8">Móveis e Equipamentos</option>
+                                    <option value="9">Material de Educação Física</option>
+                                    <option value="10">Material de Música</option>
+                                    <option value="11">Material de Ciências</option>
+                                    <option value="12">Suprimentos de Refeição</option>
+                                    <option value="13">Material de Jardinagem</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <div class="colForm">
+                                <label for="armarioaAlmoxarifado">ARMARIO:</label>
+                                <select name="armarioaAlmoxarifado" id="armarioaAlmoxarifado" required>
+                                    <option value="0">RECEBENDO</option>
+                                    <option value="1">Armario 1</option>
+                                    <option value="2">Armario 2</option>
+                                    <option value="3">Armario 3</option>
+                                    <option value="4">Armario 4</option>
+                                    <option value="5">Armario 5</option>
+                                    <option value="6">Armario 6</option>
+                                    <option value="7">Armario 7</option>
+                                    <option value="8">Armario 8</option>
+                                    <option value="9">Armario 9</option>
+                                    <option value="10">Armario 10</option>
+                                    <option value="11">Armario 11</option>
+                                    <option value="12">Armario 12</option>
+                                    <option value="13">Armario 13</option>
+                                </select>
+                            </div>
+                            <div class="colForm">
+                                <label for="prateleiraAlmoxarifado">PRATELEIRA:</label>
+                                <select name="prateleiraAlmoxarifado" id="prateleiraAlmoxarifado" required>
+                                    <option value="0">RECEBENDO</option>
+                                    <option value="1">Prateleira 1</option>
+                                    <option value="2">Prateleira 2</option>
+                                    <option value="3">Prateleira 3</option>
+                                    <option value="4">Prateleira 4</option>
+                                    <option value="5">Prateleira 5</option>
+                                    <option value="6">Prateleira 6</option>
+                                    <option value="7">Prateleira 7</option>
+                                    <option value="8">Prateleira 8</option>
+                                    <option value="9">Prateleira 9</option>
+                                    <option value="10">Prateleira 10</option>
+                                </select>
+                            </div>
+                        </div>
+                    `;
+                    document.querySelector('.newForm').appendChild(newForm);
+                    
+                    // Adiciona o evento de clique ao ícone de remoção
+                    newForm.querySelector('.lessForm').addEventListener('click', function() { newForm.remove(); });
+                    newForm.querySelector('.lessResponsive').addEventListener('click', function() { newForm.remove(); });
+                });
+                // ---------- CRIAÇÃO DE NOVOS FORMS CADASTRO ALMOXARIFADO ---------- //
             </script>
 
 <%- include ('partials/footer.ejs') %>

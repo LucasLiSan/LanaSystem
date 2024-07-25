@@ -11,6 +11,11 @@ import path from "path";
 import EstoqueLimpeza from "../models/eLimpeza.js"
 import LocalizacaoLimpeza from "../models/localizacaoLimpeza.js";
 import CategoriasProdLimp from "../models/categoriaProdLimp.js";
+import VolumeProdLimp from "../models/medidasProdLimpVolume.js";
+import AreaProdLimp from "../models/medidasProdLimpPlano.js";
+import PesoProdLimp from "../models/medidasProdLimpSolidos.js";
+import LitroProdLimp from "../models/medidasProdLimpLiquido.js";
+import TamanhoProdLimp from "../models/medidasProdLimpVestuario.js";
 import "../models/associacoes.js";
 import { where } from "sequelize";
 /* ----------/\ IMPORTAÇÃO DE TABLES /\---------- */

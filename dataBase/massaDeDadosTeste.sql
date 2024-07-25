@@ -56,7 +56,7 @@ INSERT INTO localizacaos (armario, prateleira, idProdutoGuardado, qtdPrdoGuardad
 
 select * from localizacaos;
 
-INSERT INTO estoquelimpezas (nomeProduto, descricaoProduto, corProduto, qtdEstoque, categoriaProd, codBarraProd, marcaProd, validadeProd, tipoProd) VALUES
+INSERT INTO estoquelimpezas (nomeProduto, descricaoProduto, corProduto, qtdEstoque, categoriaProd, codBarraProd, marcaProd, validadeProd, tipoProd, situacaoProd) VALUES
 ('ALCOOL','ALCOOL BACTERICIDA 70','TRANSPARENTE',25,5,'7898255676773','AUDAX FACILITA','INDETERMINADA','PESO/LITRO'),
 ('ALCOOL','ALCOOL HIDRATADO 70','TRANSPARENTE',17,5,'7899449498331','BARBAREX','45809','PESO/LITRO'),
 ('AVENTAL','AVENTAL PVC','TRANSPARENTE',1,5,'201649202407181','AVENTAL','INDETERMINADO','VESTUÁRIO'),
@@ -148,7 +148,127 @@ INSERT INTO estoquelimpezas (nomeProduto, descricaoProduto, corProduto, qtdEstoq
 
 select * from estoquelimpezas;
 
-UPDATE estoquelimpezas SET categoriaProd = 1 WHERE categoriaProd = 5;
+#SET SQL_SAFE_UPDATES=0;
+#UPDATE estoquelimpezas SET situacaoProd = 'FECHADO' WHERE tipoProd = 6;
+
+select * from estoquelimpezas where tipoProd = 1;
+
+INSERT INTO areaprodlimps (idProduto, formaProd, dimLargura, dimComprimento, dimRaio) VALUES
+(27, 'QUADRADO', 6.4, 2,''),
+(29, 'QUADRADO', 37, 27,''),
+(30, 'QUADRADO', 37, 27, ''),
+(55, 'QUADRADO', 10, 3000,''),
+(56, 'QUADRADO', 21, 23,''),
+(57, 'QUADRADO', 21, 23,''),
+(68, 'QUADRADO', 67, 39,''),
+(79, 'QUADRADO', 70, 40,''),
+(83, 'QUADRADO', 20, 21,'');
+
+select * from areaprodlimps;
+
+select * from estoquelimpezas where tipoProd = 2;
+
+INSERT INTO volumeprodlimps (idProduto, formaProd, dimLargura, dimComprimento, dimAltura, dimRaio) VALUES
+(8, 'CIRCULO', '', '', 61, 3),
+(9, 'CIRCULO', '', '', 118, 3),
+(10, 'CIRCULO', '', '', 122, 3),
+(11, 'CIRCULO', '', '', 113, 3),
+(25, 'QUADRADO', 20, 10, 61, ''),
+(28, 'CIRCULO', '', '', 200, 3),
+(35, 'QUADRADO', 23, 18, 28.8, ''),
+(36, 'QUADRADO', 23, 18.5, 28.8, ''),
+(37, 'QUADRADO', 23, 18.5, 39.6, ''),
+(47, 'QUADRADO', 14, 21.5, 5.5 , ''),
+(48, 'QUADRADO',15.5, 21, 5.5, ''),
+(49, 'QUADRADO', 18, 17.5, 3.5, ''),
+(50, 'QUADRADO', 19, 22, 6, ''),
+(51, 'QUADRADO', 19.5, 24, 8.5, ''),
+(52, 'QUADRADO', 17.5, 22, 6, ''),
+(53, 'QUADRADO', 16.5, 20.5, 5.5, ''),
+(54, 'QUADRADO', 16.5, 23, 6.5, ''),
+(62, 'QUADRADO', 5, 40, 3, ''),
+(63, 'QUADRADO', 5, 40, 3, ''),
+(64, 'QUADRADO', 5, 40, 3, ''),
+(66, 'QUADRADO', 20, 10, 61, ''),
+(67, 'QUADRADO', 20, 10, 61, ''),
+(80, 'QUADRADO', 20, 10, 61, ''),
+(81, 'QUADRADO', 20, 10, 61, ''),
+(82, 'QUADRADO', 20, 10, 61, ''),
+(84, 'QUADRADO', 3, 26, 3, ''),
+(85, 'QUADRADO', 3, 18, 3, ''),
+(86, 'QUADRADO', 3, 21, 3, ''),
+(87, 'QUADRADO', 3, 19, 3, ''),
+(88, 'QUADRADO', 3, 22, 3, ''),
+(89, 'QUADRADO', 3, 58, 3, '');
+
+select * from volumeprodlimps;
+
+select * from estoquelimpezas where tipoProd = 3;
+
+INSERT INTO litroprodlimps (idProduto, litros) VALUES
+(1, 1000),
+(2, 1000),
+(3, 1000),
+(12, 750),
+(13, 750),
+(14, 750),
+(15, 2000),
+(16, 2000),
+(17, 2000),
+(18, 2000),
+(19, 2000),
+(20, 5000),
+(21, 2000),
+(22, 2000),
+(23, 2000),
+(24, 2000),
+(32, 500),
+(33, 500),
+(34, 500),
+(65, 5000),
+(69, 100000),
+(70, 100000),
+(71, 15000),
+(72, 15000),
+(73, 200000),
+(74, 30000),
+(75, 30000),
+(76, 30000),
+(77, 50000),
+(78, 50000);
+
+select * from litroprodlimps;
+
+select * from estoquelimpezas where tipoProd = 4;
+
+INSERT INTO pesoprodlimps (idProduto, peso) VALUES
+(26, 1),
+(31, 50),
+(58, 1),
+(59, 1),
+(60, 1);
+
+select * from pesoprodlimps;
+
+select * from estoquelimpezas where tipoProd = 5;
+
+INSERT INTO tamanhoprodlimps (idProduto, tamanho) VALUES
+(4, 'M'),
+(5, '38'),
+(6, '38'),
+(7, '38'),
+(38, 'P(7)'),
+(39, 'M(8)'),
+(40, 'P'),
+(41, 'M'),
+(42, 'G'),
+(43, 'G'),
+(44, 'P'),
+(45, 'P'),
+(46, 'M'),
+(61, 'M');
+
+select * from tamanhoprodlimps;
 
 #1	Material de Limpeza
 #2	Produto de Limpeza

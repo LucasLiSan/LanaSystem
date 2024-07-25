@@ -3,6 +3,11 @@ import Categorias from "./categoria.js";
 import Localizacao from "./localizacao.js";
 import EstoqueLimpeza from "./eLimpeza.js";
 import CategoriasProdLimp from "./categoriaProdLimp.js";
+import VolumeProdLimp from "../models/medidasProdLimpVolume.js";
+import AreaProdLimp from "../models/medidasProdLimpPlano.js";
+import PesoProdLimp from "../models/medidasProdLimpSolidos.js";
+import LitroProdLimp from "../models/medidasProdLimpLiquido.js";
+import TamanhoProdLimp from "./medidasProdLimpVestuario.js";
 import LocalizacaoLimpeza from "./localizacaoLimpeza.js";
 
 /* ---------- \/ ASSOCIAÇÃO ALMOXARIFADO-CATEGORIA \/ ---------- */
